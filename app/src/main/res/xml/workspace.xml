@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<cells xmlns:cell="http://schemas.android.com/apk/res/com.lijun.androidstudy">
+    <!-- screen 0 -->
+    <!-- waterfall -->
+    <!--<cell
+        cell:className="com.lijun.androidstudy.waterfall.WaterFallActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/waterfall"
+        cell:name="@string/waterFall_title" />-->
+
+    <!-- drawAsPen -->
+    <cell
+        cell:className="com.lijun.androidstudy.drawAsPen.DrawAsPenActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/drawAsPen_title" /> 
+    
+    <!-- upshadowlockscreen -->
+    <cell
+        cell:className="com.lijun.androidstudy.upshadowlockscreen.USLockScreenActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/upshadow_lockscreen_icon"
+        cell:name="@string/upShadowLockScreen_title" />
+    
+    <!-- flashlight -->
+    <cell
+        cell:className="com.lijun.androidstudy.flashlight.FlashLight"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/flash_icon"
+        cell:name="@string/flashlight_title" />
+    
+    <!-- halo -->
+    <cell
+        cell:className="com.lijun.androidstudy.halo.HaloActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/halo_icon"
+        cell:name="@string/halo_title" />
+    
+    <!-- FloatMultiTask -->
+    <cell
+        cell:className="com.lijun.androidstudy.floatmeltitask.FloatMultiTaskActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/floatmultitask_icon"
+        cell:name="@string/floatmeltitask_title" />
+    
+    <!-- ebook -->
+    <cell
+        cell:className="com.lijun.androidstudy.ebook.EbookReader"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/ebook_reader"
+        cell:name="@string/ebook_title" />
+
+    <!-- IconTools -->
+    <cell
+        cell:className="com.lijun.androidstudy.icontools.IconToolsActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/icontools_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    
+    <!-- screen 1 -->
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/waterfall"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    
+    <!-- screen 2 -->
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/upshadow_lockscreen_icon"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    
+    <!-- screen 3 -->
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/flash_icon"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+    <cell
+        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:packageName="com.lijun.androidstudy"
+        cell:icon="@drawable/drawaspen"
+        cell:name="@string/upShadowLockScreen_title" />
+
+</cells>

@@ -1,5 +1,5 @@
 .DS_Store
-.gradle
+.gradle/
 .idea
 /local.properties
 /build
@@ -7,3 +7,5 @@
 *.iml
 *.apk
 *.jks
+gradle/
+gradlew*

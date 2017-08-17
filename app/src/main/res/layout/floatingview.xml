@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:orientation="vertical"
+        android:id="@+id/floatingWholeMainView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RelativeLayout android:id="@+id/top"
+            android:background="@drawable/floatingmainbg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true">
+            <RelativeLayout android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22.0px"
+                android:layout_alignParentTop="true">
+                <ImageButton android:id="@+id/btn_tosettings"
+                    android:background="@null"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30.0px"
+                    android:src="@drawable/floatingsettings"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true" />
+                <TextView android:textSize="16.0sp"
+                    android:textColor="@color/bbk_floating_window_original_color"
+                    android:id="@+id/floatingtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="226.0px"
+                    android:text="@string/float_multi_task"
+                    android:shadowColor="#ff000000"
+                    android:shadowDx="0.0"
+                    android:shadowDy="1.0"
+                    android:shadowRadius="1.0" />
+                <ImageButton android:id="@+id/btn_tofloatingbutton"
+                    android:background="@null"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="564.0px"
+                    android:src="@drawable/floating_maintobutton"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+            <LinearLayout android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:id="@+id/one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50.0px"
+                android:layout_marginTop="140.0px"
+                android:layout_below="@id/title"
+                android:layout_alignParentTop="true">
+                <com.vivo.common.ImageTextViewButton android:id="@+id/video" android:background="#00000000" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentBottom="true" />
+            </LinearLayout>
+            <LinearLayout android:gravity="center_vertical" android:orientation="vertical" android:id="@+id/two" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="482.0px" android:layout_marginTop="140.0px" android:layout_toRightOf="@id/one" android:layout_alignParentLeft="true">
+                <com.vivo.common.ImageTextViewButton android:id="@+id/music" android:background="#00000000" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentBottom="true" />
+            </LinearLayout>
+            <LinearLayout android:layout_gravity="center" android:orientation="vertical" android:id="@+id/five" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="296.0px" android:layout_below="@id/one" android:layout_alignParentTop="true" android:layout_centerHorizontal="true">
+                <com.vivo.common.ImageTextViewButton android:id="@+id/minscreen" android:background="#00000000" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentBottom="true" />
+            </LinearLayout>
+            <LinearLayout android:gravity="center_vertical" android:orientation="vertical" android:id="@+id/three" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="58.0px" android:layout_marginTop="445.0px" android:layout_below="@id/five" android:layout_alignParentTop="true">
+                <com.vivo.common.ImageTextViewButton
+                    android:id="@+id/note"
+                    android:background="#00000000"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true" />
+            </LinearLayout>
+            <LinearLayout android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:id="@+id/four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="482.0px"
+                android:layout_marginTop="445.0px"
+                android:layout_toRightOf="@id/three"
+                android:layout_below="@id/five"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true">
+                <com.vivo.common.ImageTextViewButton
+                    android:id="@+id/message"
+                    android:background="#00000000"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true" />
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

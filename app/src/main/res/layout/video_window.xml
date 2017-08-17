@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/videoWholeView">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/videoplayer_floatingwindowvideo_titlebackground"
+            android:id="@+id/rl_title_bar">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:id="@+id/iv_back"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/videoplayer_floatingwindowvideo_tomain"
+                android:layout_alignParentLeft="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@android:color/white"
+                android:text="@string/video_window_title"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/videoplayer_floatingwindowvideo_close"
+                android:layout_marginRight="10dp"
+                android:id="@+id/iv_minimize"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/videoplayer_floatingwindowvideo_bottombackground"
+            android:layout_below="@id/rl_title_bar"
+            android:id="@+id/rl_content_bar">
+            <SurfaceView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:visibility="gone"
+                android:id="@+id/sv_video"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_no_video"
+                android:textSize="16.0sp"
+                android:text="@string/no_video"
+                android:layout_centerInParent="true"/>
+            <View
+                android:layout_width="0px"
+                android:id="@+id/invisible_view"
+                android:layout_height="0px"
+                android:layout_alignParentBottom="true"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/videoplayer_floatingwindowvideo_content_controller_background"
+                android:id="@+id/rl_bottom_bar"
+                android:layout_above="@id/invisible_view"
+                android:layout_marginBottom="5dp"
+                >
+                <ProgressBar android:id="@+id/videoplayer_floatingwindowvideo_content_controller_progressbar"
+                    android:layout_width="fill_parent"
+                    android:layout_height="3dp"
+                    style="@android:style/Widget.ProgressBar.Horizontal" />
+                <ImageButton android:id="@+id/videoplayer_floatingwindowvideo_content_controller_playvideo"
+                    android:background="@null"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/app_play_button_bg"
+                    android:layout_centerInParent="true" />
+                <ImageButton android:id="@+id/videoplayer_floatingwindowvideo_content_controller_lastvideo"
+                    android:background="@null"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/videoplayer_floatingwindowvideo_content_controller_lastvideo"
+                    android:layout_toLeftOf="@id/videoplayer_floatingwindowvideo_content_controller_playvideo"
+                    android:layout_centerVertical="true" />
+                <ImageButton android:id="@+id/videoplayer_floatingwindowvideo_content_controller_nextvideo"
+                    android:background="@null"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/videoplayer_floatingwindowvideo_content_controller_nextvideo"
+                    android:layout_toRightOf="@id/videoplayer_floatingwindowvideo_content_controller_playvideo"
+                    android:layout_centerVertical="true" />"
+                <ImageButton android:id="@+id/videoplayer_floatingwindowvideo_content_controller_tomovieview"
+                    android:background="@null"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/videoplayer_floatingwindowvideo_content_controller_tomovieview"
+                    android:layout_toLeftOf="@id/videoplayer_floatingwindowvideo_content_controller_lastvideo"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

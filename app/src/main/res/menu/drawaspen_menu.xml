@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/draw_by_pen"
+        android:title="@string/draw_by_pen_menu"/>
+    <item
+        android:id="@+id/draw_by_picture"
+        android:title="@string/draw_by_picture_menu"/>
+
+</menu>

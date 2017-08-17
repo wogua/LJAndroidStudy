@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.lijun.androidstudy">
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+
+    <application
+        android:name="LJApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.NoTitleBar" >
+
+        <activity
+            android:name="com.lijun.androidstudy.welcomeViewPager.GuideActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.lijun.androidstudy.launcher.LJLauncher"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.lijun.androidstudy.waterfall.WaterFallActivity"
+            android:label="@string/waterFall_title" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.lijun.androidstudy.upshadowlockscreen.USLockScreenActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/upShadowLockScreen_title" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".flashlight.FlashLight"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.lijun.androidstudy.drawAsPen.DrawAsPenActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/drawAsPen_title" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.lijun.androidstudy.halo.HaloActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/halo_title" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.lijun.androidstudy.floatmeltitask.FloatMultiTaskActivity"
+            android:theme="@android:style/Theme.Black"
+            android:label="@string/floatmeltitask_settings_title" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="com.lijun.androidstudy.floatmultitask.SETTINGS" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.lijun.androidstudy.ebook.EbookReader"
+            android:screenOrientation="portrait"
+            android:label="@string/ebook_title" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <service
+            android:name="com.lijun.androidstudy.floatmeltitask.FloatMultiTaskService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
+
+        <service
+            android:name="com.lijun.androidstudy.floatmeltitask.BackTaskService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
+
+        <receiver
+            android:name="com.lijun.androidstudy.floatmeltitask.FloatMultiTaskReceiver"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.malata.floatmultitask.action.changestatus" />
+                <action android:name="com.malata.floatmultitask.action.close" />
+                <action android:name="com.malata.floatmultitask.action.showmainwindow" />
+                <action android:name="com.malata.floatmultitask.action.showfloatbutton" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="com.malata.floatmultitask.action.cleanbesidesms" />
+                <action android:name="com.malata.floatmultitask.action.disableautoshowsms" />
+                <action android:name="com.malata.floatmultitask.action.enableautoshowsms" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+
+</manifest>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="scene_window_background">#ff191919</color>
+    <color name="drag_view_multiply_color">#ccffffff</color>
+    <color name="bubble_dark_background">#b2191919</color>
+    <color name="windowTitleColor">#ffffffff</color>
+    <color name="windowTitleShadowColor">#00494d59</color>
+    <color name="windowTitlleButtonShadowColor">#0036343a</color>
+    <color name="prefenceContentNullColor">#ff313131</color>
+    <color name="prefenceContentNullShadowColor">#ffffffff</color>
+    <color name="lock_shadow">#ff36343a</color>
+    <color name="bbk_search_window_background">#a0000000</color>
+    <color name="round_edittext_color">#ff000000</color>
+    <color name="lockscreen_multiscreen_shortcut_textcolor">#ffffffff</color>
+    <color name="bbk_facelock_color_background">#ff000000</color>
+    <color name="bbk_dialog_text_color">#ff343434</color>
+    <color name="bbk_floating_window_original_color">#ffffffff</color>
+    <color name="bbk_floating_window_click_color">#ff009cff</color>
+    <color name="vivo_perm_title_bg">#ffeeeeee</color>
+    <color name="vivo_perm_bg">#fff4f4f4</color>
+    <color name="vivo_perm_text">#ff343434</color>
+    <color name="vivo_perm_note_text">#ff818181</color>
+    <color name="workspace_text_color">#ffffffff</color>
+</resources>

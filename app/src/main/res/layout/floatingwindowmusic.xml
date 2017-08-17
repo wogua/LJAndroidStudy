@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  <LinearLayout
+      android:orientation="vertical"
+      android:id="@+id/floatingWholerect"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical"
+            android:id="@+id/floatingrect"
+            android:background="@drawable/floatingrect_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@+id/windowcontrolrect"
+                android:visibility="visible"
+                android:layout_width="fill_parent"
+                android:layout_height="40.0dip"
+                android:layout_marginTop="4.0dip"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true">
+                <TextView android:textSize="16.0sp"
+                    android:textColor="#ffffffff"
+                    android:gravity="center" android:id="@+id/music_title"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ic_music"
+                    android:shadowColor="#ff000000"
+                    android:shadowDx="0.0"
+                    android:shadowDy="-1.0"
+                    android:shadowRadius="1.0"
+                    android:layout_weight="1.0"
+                    android:layout_centerVertical="true" />
+                <ImageButton
+                    android:id="@+id/btn_tofloatingwindowmain"
+                    android:background="@null"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10.0dip"
+                    android:src="@drawable/btn_tofloatingwindowmain"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true" />
+                <ImageButton
+                    android:id="@id/btn_tofloatingbutton"
+                    android:background="@null"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10.0dip"
+                    android:src="@drawable/btn_tofloatingbutton"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+            <LinearLayout
+                android:background="@drawable/float_title_bg"
+                android:layout_width="fill_parent"
+                android:layout_height="26.0dip">
+                <TextView
+                    android:textSize="12.0sp"
+                    android:textColor="#ffffffff"
+                    android:gravity="center"
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/songname"
+                    android:layout_width="fill_parent"
+                    android:layout_height="30.0dip"
+                    android:layout_marginLeft="10.0dip"
+                    android:layout_marginRight="10.0dip"
+                    android:text="@string/song_name"
+                    android:singleLine="true"
+                    android:shadowColor="#ff000000"
+                    android:shadowDx="0.0"
+                    android:shadowDy="-1.0"
+                    android:shadowRadius="1.0"
+                    android:layout_weight="1.0" />
+            </LinearLayout>
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/lrcrect"
+            android:background="@drawable/lrcrect_bg"
+            android:clickable="true"
+            android:layout_width="fill_parent"
+            android:layout_height="97.0dip">
+            <RelativeLayout
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/float_lrc_bg"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <RelativeLayout
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="80.0dip"
+                    android:layout_marginTop="9.0dip">
+                    <TextView android:textSize="14.0sp"
+                        android:textColor="#ffffffff"
+                        android:id="@+id/state"
+                        android:visibility="invisible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6.0dip"
+                        android:layout_marginRight="6.0dip"
+                        android:layout_centerInParent="true" />
+                    <com.lijun.androidstudy.floatmeltitask.LrcTextView
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="10.0dip"
+                        android:layout_marginRight="10.0dip"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/lrcView"
+                        android:layout_height="match_parent" />
+                    <!--<com.android.bbkmusic.LrcTextView
+                        android:textSize="18.0sp"
+                        android:textColor="#ffffffff"
+                        android:ellipsize="marquee"
+                        android:gravity="center"
+                        android:id="@id/prevnop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="10.0dip"
+                        android:layout_marginRight="10.0dip"
+                        android:text="@string/mediaplaybacklabel"
+                        android:singleLine="true"
+                        android:shadowColor="#ff000000"
+                        android:shadowDx="0.0"
+                        android:shadowDy="-1.0"
+                        android:shadowRadius="1.0"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true" />-->
+                    <TextView
+                        android:textSize="18.0sp"
+                        android:textColor="#66ffffff"
+                        android:ellipsize="marquee"
+                        android:gravity="center"
+                        android:id="@+id/nextnop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="10.0dip"
+                        android:layout_marginRight="10.0dip"
+                        android:visibility="gone"
+                        android:text="@string/tag"
+                        android:singleLine="true"
+                        android:shadowColor="#ff000000"
+                        android:shadowDx="0.0"
+                        android:shadowDy="-1.0"
+                        android:shadowRadius="1.0"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true" />
+                    <TextView android:textSize="18.0sp"
+                        android:textColor="#66ffffff"
+                        android:ellipsize="marquee"
+                        android:gravity="center"
+                        android:id="@+id/thirdnop"
+                        android:visibility="invisible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="10.0dip"
+                        android:layout_marginRight="10.0dip"
+                        android:text="@string/tag"
+                        android:singleLine="true"
+                        android:shadowColor="#ff000000"
+                        android:shadowDx="0.0"
+                        android:shadowDy="-1.0"
+                        android:shadowRadius="1.0"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:id="@+id/playcontrolrect"
+            android:background="@drawable/playcontrolrect_bg"
+            android:layout_width="fill_parent"
+            android:layout_height="40.0dip">
+            <ImageButton
+                android:id="@+id/prev"
+                android:background="@null"
+                android:layout_width="60.0dip"
+                android:layout_height="wrap_content"
+                android:src="@drawable/app_prev_button_bg"
+                android:scaleType="center" />
+            <ImageButton
+                android:id="@+id/pause"
+                android:background="@null"
+                android:layout_width="60.0dip"
+                android:layout_height="wrap_content"
+                android:src="@drawable/app_play_button_bg"
+                android:scaleType="center" />
+            <ImageButton
+                android:id="@+id/next"
+                android:background="@null"
+                android:layout_width="60.0dip"
+                android:layout_height="wrap_content"
+                android:src="@drawable/app_next_button_bg"
+                android:scaleType="center" />
+        </LinearLayout>
+    </LinearLayout>-->
+</LinearLayout>

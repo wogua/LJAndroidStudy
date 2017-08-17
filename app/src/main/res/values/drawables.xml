@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="drawable" name="screen_background_light">#ffffffff</item>
+    <item type="drawable" name="bbk_scroll_number_picker_color_white">#00000000</item>
+    <item type="drawable" name="preference_background_color">#fff4f4f4</item>
+    <item type="drawable" name="blue">#ff14b1cd</item>
+    <item type="drawable" name="grey">#ff717171</item>
+</resources>

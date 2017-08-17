@@ -1,0 +1,80 @@
+<resources>
+
+    <!-- main -->
+    <string name="app_name">LJAndroidStudy</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="start_text">start study android!</string>
+
+    <!-- water fall -->
+    <string name="waterFall_title">WaterFall</string>
+
+    <!-- drawAsPen -->
+    <string name="drawAsPen_title">DrawAsPen</string>
+    <string name="draw_by_pen_menu">Draw By Pen</string>
+    <string name="draw_by_picture_menu">Draw By picture</string>
+
+    <!-- upShadowLockScreen -->
+    <string name="upShadowLockScreen_title">UpShadowLS</string>
+
+    <!-- flashlight -->
+    <string name="flashlight_title">FlashLight</string>
+    <string name="camera_connect_error">Camera connect Faild,please try again!</string>
+    
+    <!-- halo -->
+    <string name="halo_title">Halo</string>
+    
+    <!-- launcher -->
+    <string name="scroll_style_classics_title">Classics</string>
+    <string name="scroll_style_cube_title">Cube</string>
+    <string name="scroll_style_columnar_title">Columnar</string>
+    <string name="scroll_style_sphere_title">Sphere</string>
+    <string name="scroll_style_3drota_title">3DRota</string>
+    <string name="slide_menu_title">Launcher Menu</string>
+    
+    <!-- floatmeltitask -->
+    <!-- <string name="floatmeltitask_title">Floatmeltitask</string> -->
+    <string name="floatmeltitask_title">悬浮多任务</string>
+    <string name="floatmeltitask_settings_title">悬浮多任务设置</string>
+    <string name="floatmeltitask_switch_title">打开悬浮多任务</string>
+    <string name="ic_video">视频</string>
+    <string name="ic_music">音乐</string>
+    <string name="ic_note">便签</string>
+    <string name="ic_msg">收件箱</string>
+    <string name="song_name">歌曲名</string>
+    <string name="no_song">无歌曲</string>
+    <string name="no_video">无视频</string>
+    <string name="tag">标签</string>
+    <string name="multi_task_title">悬浮多任务</string>
+    <string name="float_multi_task">悬浮多任务</string>
+    <string name="music_window_title">音乐</string>
+    <string name="video_window_title">视频</string>
+    <string name="note_window_title">便签</string>
+    <string name="note_window_title_new">新便签</string>
+    <string name="note_window_title_update">更新便签</string>
+    <string name="note_time_year">年</string>
+    <string name="note_time_month">月</string>
+    <string name="note_time_day">日</string>
+    <string name="msg_window_title">收件箱</string>
+    <string name="reply">回复:</string>
+    <string name="need_resend">消息发送失败,请重新发送</string>
+    <string name="password_input_password">输入密码</string>
+    <string name="no_lrc">暂无歌词</string>
+    <string name="no_note">无便签</string>
+    <string name="edit_note_cancel">取消</string>
+    <string name="edit_note_save">保存</string>
+    <string name="password_error_text">密码错误,请重试</string><!--Incorrect password, please retry.-->
+    <string name="list_null">无信息</string>
+    <string name="message_encrypted_unlock">See encrypted</string>
+    <string name="new_message">New message</string>
+    <string name="float_window_from">来自:</string>
+    <string name="inbox">收件箱</string>
+    
+    <!-- ebook -->
+    <string name="ebook_title">Ebook Reader</string>
+
+    <!-- icontools -->
+    <string name="icontools_title">Icon Tools</string>
+
+
+</resources>

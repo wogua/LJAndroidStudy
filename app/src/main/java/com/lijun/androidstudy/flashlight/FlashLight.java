@@ -1,39 +1,23 @@
 package com.lijun.androidstudy.flashlight;
 
-import java.util.List;
-import java.util.zip.Inflater;
-
 import com.lijun.androidstudy.R;
-
 
 import android.graphics.Rect;
 import android.hardware.Camera;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.app.Activity;
-import android.app.ActivityManager;
-import android.app.ActivityManager.RunningTaskInfo;
-import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.telephony.PhoneStateListener;
-import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MotionEvent;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 
 /**
  * @author lijun
@@ -222,7 +206,6 @@ public class FlashLight extends Activity {
         sp.play(sourceid, volumnRatio, volumnRatio, 1, 0, 1);
     }
 
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         // TODO Auto-generated method stub
@@ -251,30 +234,4 @@ public class FlashLight extends Activity {
         }
         return super.onTouchEvent(event);
     }
-
-
-//	public void createPhoneListener() {
-//		TelephonyManager telephony = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-//		telephony.listen(new OnePhoneStateListener(),
-//				PhoneStateListener.LISTEN_CALL_STATE);
-//	}
-
-//	class OnePhoneStateListener extends PhoneStateListener {
-//
-//		public void onCallStateChanged(int state, String incomingNumber) {
-//			switch (state) {
-//			case TelephonyManager.CALL_STATE_RINGING:
-//				Log.i(TAG, "[Listener]�ȴ��ӵ绰:" + incomingNumber);
-////				FlashLight.this.onDestroy();
-//				break;
-//			case TelephonyManager.CALL_STATE_IDLE:
-//				Log.i(TAG, "[Listener]�绰�Ҷ�:" + incomingNumber);
-//				break;
-//			case TelephonyManager.CALL_STATE_OFFHOOK:
-//				Log.i(TAG, "[Listener]ͨ����:" + incomingNumber);
-//				break;
-//			}
-//			super.onCallStateChanged(state, incomingNumber);
-//		}
-//	}
 }

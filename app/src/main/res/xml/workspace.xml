@@ -55,13 +55,15 @@
     <cell
         cell:className="com.lijun.androidstudy.icontools.IconToolsActivity"
         cell:packageName="com.lijun.androidstudy"
-        cell:icon="@drawable/drawaspen"
+        cell:icon="@drawable/icon_tools"
         cell:name="@string/icontools_title" />
+
+    <!-- Widgets -->
     <cell
-        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:className="com.lijun.androidstudy.widgets.WidgetsActivity"
         cell:packageName="com.lijun.androidstudy"
-        cell:icon="@drawable/drawaspen"
-        cell:name="@string/upShadowLockScreen_title" />
+        cell:icon="@drawable/ic_widgets"
+        cell:name="@string/widgets_title" />
     <cell
         cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
         cell:packageName="com.lijun.androidstudy"

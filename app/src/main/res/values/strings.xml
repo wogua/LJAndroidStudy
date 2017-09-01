@@ -76,5 +76,7 @@
     <!-- icontools -->
     <string name="icontools_title">Icon Tools</string>
 
+    <!-- Widgets -->
+    <string name="widgets_title">控件组</string>
 
 </resources>

@@ -9,6 +9,8 @@ import java.util.Map;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase;
 import com.lijun.androidstudy.R;
 import com.lijun.androidstudy.util.Utilities;
 
@@ -24,8 +26,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.app.Activity;
@@ -36,7 +36,6 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.content.res.XmlResourceParser;
-import android.database.DataSetObserver;
 import android.graphics.BitmapFactory;
 
 public class LJLauncher extends Activity implements View.OnClickListener {
@@ -54,13 +53,9 @@ public class LJLauncher extends Activity implements View.OnClickListener {
     private int cellSize = 0;
     private int screens = 0;
 
-    private float downX,currenX,relativeX;
-    private float downY,currenY,relativeY;
-    private static int FLIP_MENU_Y = 20;//上滑大于FLIP_MENU_Y开始显示菜单
-    private boolean toDrawMenu = true;
-    private boolean isDrawingMenu = false;
     private View slideMenuView ;
     private ListView slideMenuLlistView;
+    int[] mSlideStyles ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,11 +63,8 @@ public class LJLauncher extends Activity implements View.OnClickListener {
 
         mLauncherView = (View) findViewById(R.id.launcher);
         mWorkspace = (LJWorkSpace) findViewById(R.id.workspace);
-        slideMenuView = (View) findViewById(R.id.slide_menu);
-        slideMenuLlistView = (ListView) findViewById(R.id.slide_menu_list);
-        List<Map<String, Object>> data=getData();
-        slideMenuLlistView.setAdapter(new SlideMenuListAdapter(this,data));
         mInflater = getLayoutInflater();
+        initSlidingMenu();
         bindWorkspace();
     }
 
@@ -124,49 +116,6 @@ public class LJLauncher extends Activity implements View.OnClickListener {
         }
         setScrollStyle(style);
         return true;
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        // TODO Auto-generated method stub
-        float y = event.getY();
-        float x = event.getX();
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            downX = currenX = x;
-            downY = currenY = y;
-            toDrawMenu = true;
-        }else if (event.getAction() == MotionEvent.ACTION_UP
-                || event.getAction() == MotionEvent.ACTION_CANCEL) {
-            endSlideMenu();
-        }else if (event.getAction() == MotionEvent.ACTION_MOVE) {
-            currenX = x;
-            currenY = y;
-            relativeX = Math.abs(currenX - downX);
-            relativeY = Math.abs(currenY - downY);
-            Log.d("--lijun--", "relativeY:"+relativeY + "  relativeX:"+relativeX);
-            if(currenY>downY){//下滑return
-                return super.onTouchEvent(event);
-            }
-            if (relativeY < FLIP_MENU_Y) {
-                if (relativeX > relativeY * 0.4 && relativeY > FLIP_MENU_Y/2) {
-                    Log.e("--lijun--", "11");
-                    toDrawMenu = false;
-                }
-            }else{
-                if(toDrawMenu){
-                    if(!isDrawingMenu){
-                        startSlideMenu();
-                    }else{
-                        onSlideMenu();
-                    }
-                } else{
-                    Log.e("--lijun--", "22");
-                    toDrawMenu = false;
-                }
-            }
-
-        }
-        return super.onTouchEvent(event);
     }
 
     private void bindWorkspace() {
@@ -298,27 +247,6 @@ public class LJLauncher extends Activity implements View.OnClickListener {
         editor.commit();
     }
 
-    private void startSlideMenu(){
-        isDrawingMenu = true;
-        slideMenuView.setVisibility(View.VISIBLE);
-        slideMenuView.setTranslationY(200);
-        mLauncherView.invalidate();
-    }
-
-    private void onSlideMenu(){
-        if((relativeY - FLIP_MENU_Y) >= 200){
-            slideMenuView.setTranslationY(0);
-        }else{
-            slideMenuView.setTranslationY(200 - relativeY + FLIP_MENU_Y);
-        }
-        mLauncherView.invalidate();
-    }
-
-    private void endSlideMenu(){
-        isDrawingMenu = false;
-        slideMenuView.setVisibility(View.GONE);
-    }
-
     class SlideMenuListAdapter extends BaseAdapter{
 
         private List<Map<String, Object>> data;
@@ -333,6 +261,7 @@ public class LJLauncher extends Activity implements View.OnClickListener {
         final class SlideMenuItem{
             ImageView slideMenuItemIconView;
             TextView slideMenuItemTextView;
+            int slideStyle;
         }
         @Override
         public int getCount() {
@@ -361,7 +290,9 @@ public class LJLauncher extends Activity implements View.OnClickListener {
                 convertView = mInflater.inflate(R.layout.slide_menu_list_item, null);
                 itemLayout.slideMenuItemIconView =  (ImageView)convertView.findViewById(R.id.slide_menu_icon);
                 itemLayout.slideMenuItemTextView =  (TextView)convertView.findViewById(R.id.slide_menu_title);
+                itemLayout.slideStyle = mSlideStyles[position];
                 convertView.setTag(itemLayout);
+                convertView.setOnClickListener(mSlidingMenuItemClick);
             }else{
                 itemLayout = (SlideMenuItem)convertView.getTag();
             }
@@ -371,11 +302,15 @@ public class LJLauncher extends Activity implements View.OnClickListener {
         }
     }
 
+
     public List<Map<String, Object>> getData() {
         int[] icons = Utilities.getIds(this.getResources(),
                 R.array.slide_menu_icons);
         String[] titles = this.getResources().getStringArray(
                 R.array.slide_menu_titles);
+
+        mSlideStyles = this.getResources().getIntArray(R.array.slide_menu_values);
+
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
         for (int i = 0; i < icons.length; i++) {
             Map<String, Object> map = new HashMap<String, Object>();
@@ -384,5 +319,40 @@ public class LJLauncher extends Activity implements View.OnClickListener {
             list.add(map);
         }
         return list;
+    }
+
+    private View.OnClickListener mSlidingMenuItemClick = new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            SlideMenuListAdapter.SlideMenuItem itemLayout = (SlideMenuListAdapter.SlideMenuItem) v.getTag();
+            setScrollStyle(itemLayout.slideStyle);
+        }
+    };
+
+    public void initSlidingMenu() {
+        LayoutInflater inflater = LayoutInflater.from(this);
+        slideMenuView = inflater.inflate(R.layout.slide_menu,(ViewGroup) mLauncherView,false);
+        slideMenuLlistView = (ListView) slideMenuView.findViewById(R.id.slide_menu_list);
+        List<Map<String, Object>> data=getData();
+        slideMenuLlistView.setAdapter(new SlideMenuListAdapter(this,data));
+
+        SlidingMenu localSlidingMenu = new SlidingMenu(this);
+        localSlidingMenu.setMode(SlidingMenu.LEFT);//设置左右滑菜单
+        localSlidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);//设置要使菜单滑动，触碰屏幕的范围
+        //localSlidingMenu.setTouchModeBehind(SlidingMenu.RIGHT);
+        localSlidingMenu.setShadowWidthRes(R.dimen.sliding_menu_shadow_width);//设置阴影图片的宽度
+        localSlidingMenu.setShadowDrawable(R.drawable.shadow);//设置阴影图片
+        localSlidingMenu.setBehindOffsetRes(R.dimen.sliding_menu_behind_offset);//设置划出时主页面显示的剩余宽度
+        localSlidingMenu.setFadeEnabled(true);//设置滑动时菜单的是否渐变
+        localSlidingMenu.setFadeDegree(0.35F);//设置滑动时的渐变程度
+        localSlidingMenu.attachToActivity(this, SlidingMenu.RIGHT);//使SlidingMenu附加在Activity右边
+//		localSlidingMenu.setBehindWidthRes(R.dimen.left_drawer_avatar_size);//设置SlidingMenu菜单的宽度
+        localSlidingMenu.setMenu(slideMenuView);//设置menu的布局文件
+//        localSlidingMenu.toggle();//动态判断自动关闭或开启SlidingMenu
+        localSlidingMenu.setOnOpenedListener(new SlidingMenu.OnOpenedListener() {
+            public void onOpened() {
+
+            }
+        });
     }
 }

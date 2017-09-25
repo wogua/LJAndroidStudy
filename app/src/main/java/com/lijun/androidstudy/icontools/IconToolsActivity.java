@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.lijun.androidstudy.R;
 
+import org.json.JSONArray;
 import org.xmlpull.v1.XmlSerializer;
 
 import java.io.File;
@@ -76,7 +77,7 @@ public class IconToolsActivity extends AppCompatActivity {
             return o1.isSystem?-1:1;
         }
     });
-    public static String[] sAllPermissions = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE};
+    public static String[] sAllPermissions = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.INSTALL_SHORTCUT};
 
     private void checkPermission() {
         List<String> noOkPermissions = new ArrayList<>();
@@ -182,27 +183,16 @@ public class IconToolsActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.screen_config_button) {
-//                testSetBadge(3);
+                setUnreadNumber(3);
                 generateScreenConfig();
             } else if (v.getId() == R.id.theme_config_button) {
-//                testSetBadge(6);
+                setUnreadNumber2(6);
+                testGetShortcutList();
+                createShortCut();
                 generateThemeIconConfig();
             }
         }
     };
-
-    private void testSetBadge(int count){
-        String method = "setBadge";
-        Bundle b = new Bundle();
-        b.putInt("count",count);
-        Uri uri = Uri.parse("content://com.android.dlauncher.badge/badge");
-        Bundle bundle = getContentResolver().call(uri, method, null, b);
-        if (bundle != null && bundle.getBoolean("result")) {
-            Log.d("lijun", "callTest true");
-        } else {
-            Log.d("lijun", "callTest false");
-        }
-    }
 
     private boolean setUnreadNumber(int count){
         String method = "setBadge";
@@ -212,17 +202,76 @@ public class IconToolsActivity extends AppCompatActivity {
             Uri uri = Uri.parse("content://com.android.dlauncher.badge/badge");
             Bundle bundle = getContentResolver().call(uri, method, null, b);
             if (bundle != null && bundle.getBoolean("result")) {
-                Log.d("lijun", "setUnreadNumber true");
+                Log.d("lijun22", "setUnreadNumber true");
                 return true;
             } else {
-                Log.d("lijun", "setUnreadNumber false");
+                Log.d("lijun22", "setUnreadNumber false");
                 return false;
             }
         }catch (Exception e){
-            Log.d("lijun", "setUnreadNumber exception : " + e.toString());
+            Log.d("lijun22", "setUnreadNumber exception : " + e.toString());
             e.printStackTrace();
             return false;
         }
+    }
+
+    private boolean setUnreadNumber2(int count){
+        String method = "setAppBadgeCount";
+        Bundle b = new Bundle();
+        b.putStringArrayList("app_shortcut_custom_id", null);
+        b.putInt("app_badge_count", 10);
+        try {
+            Uri uri = Uri.parse("content://com.android.dlauncher.badge/badge");
+            Bundle bundle = getContentResolver().call(uri, method, null, b);
+            if (bundle != null && bundle.getBoolean("result")) {
+                Log.d("lijun22", "setUnreadNumber2 true");
+                return true;
+            } else {
+                Log.d("lijun22", "setUnreadNumber2 false");
+                return false;
+            }
+        }catch (Exception e){
+            Log.d("lijun22", "setUnreadNumber exception : " + e.toString());
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    private void testGetShortcutList(){
+        String method = "getShortcutList";
+        Bundle b = new Bundle();
+        try {
+            Uri uri = Uri.parse("content://com.android.dlauncher.badge/badge");
+            Bundle bundle = getContentResolver().call(uri, method, null, b);
+            if (bundle != null) {
+                Log.d("lijun22", "testGetShortcutList true");
+                String result = bundle.getString("shortcut_list");
+                JSONArray jsonArray = new JSONArray(result);
+            } else {
+                Log.d("lijun22", "testGetShortcutList false");
+            }
+        }catch (Exception e){
+            Log.d("lijun22", "testGetShortcutList exception : " + e.toString());
+            e.printStackTrace();
+        }
+    }
+
+    private void createShortCut(){
+        Intent shortcut = new Intent(
+                "com.android.launcher.action.INSTALL_SHORTCUT");
+        shortcut.putExtra(Intent.EXTRA_SHORTCUT_NAME,"TestBadgeShortCut"
+                /*getString(R.string.app_name)*/);
+        shortcut.putExtra("duplicate", false);
+        Intent shortcutIntent = new Intent();
+        shortcutIntent.setClassName("com.lijun.androidstudy.icontools",
+                "com.lijun.androidstudy.icontools.IconToolsActivity");
+        shortcutIntent.putExtra("app_shortcut_custom_id",
+                "custom_id_001");
+        shortcut.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
+        Intent.ShortcutIconResource iconRes = Intent.ShortcutIconResource.fromContext(
+                this, R.drawable.icon_tools);
+        shortcut.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, iconRes);
+        sendBroadcast(shortcut,Manifest.permission.INSTALL_SHORTCUT);//com.android.launcher.permission.INSTALL_SHORTCUT
     }
 
     private void generateScreenConfig(){

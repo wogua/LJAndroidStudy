@@ -49,6 +49,7 @@ public class LJWorkSpace extends ViewGroup {
     private static final int SNAP_VELOCITY = 600;
 
     public static final String SCROLL_STYLE_KEY = "scroll_style";
+    //the styles need match arrays slide_menu_values
     public static final int SCROLL_STYLE_CLASSICS = 1;//经典翻页方式
     public static final int SCROLL_STYLE_CUBE = 2;//立方体翻页
     public static final int SCROLL_STYLE_COLUMNAR = 3;//柱状翻页

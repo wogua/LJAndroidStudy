@@ -32,4 +32,12 @@
         <item>@drawable/slide_list_item_icon</item>
         <item>@drawable/slide_list_item_icon</item>
     </array>
+
+    <array name="slide_menu_values"><!-- this need match SCROLL_STYLE_??? -->
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </array>
 </resources>

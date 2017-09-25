@@ -13,11 +13,4 @@
 	    android:layout_marginBottom="100dip" 
 	    />
 	
-	<include
-            android:id="@+id/slide_menu"
-            layout="@layout/slide_menu"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:visibility="gone"/>
-	
 </RelativeLayout>

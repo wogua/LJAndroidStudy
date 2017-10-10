@@ -27,7 +27,7 @@
         <com.lijun.shapeimage.widgets.RectangleImageView
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="6dp"
             android:src="@drawable/shape_image_sample"
             android:scaleType="centerCrop" />
 
@@ -46,6 +46,13 @@
             android:src="@drawable/shape_image_sample"
             app:shape="svg"
             app:svg_raw_resource="@raw/shape_heart"
+            android:scaleType="centerCrop" />
+
+        <com.lijun.shapeimage.widgets.ComposeRenderShapeView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/shape_image_sample"
             android:scaleType="centerCrop" />
     </LinearLayout>
 

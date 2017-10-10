@@ -54,11 +54,11 @@ public class CustomShapeImageView extends BaseImageView {
     public Bitmap getBitmap() {
         switch (mShape) {
             case Shape.CIRCLE:
-                return CircleImageView.getBitmap(getWidth(), getHeight());
+                return CircleImageView.getBitmap(getMeasuredWidth(), getMeasuredHeight());
             case Shape.RECTANGLE:
-                return RectangleImageView.getBitmap(getWidth(), getHeight());
+                return RectangleImageView.getBitmap(getMeasuredWidth(), getMeasuredHeight());
             case Shape.SVG:
-                return SvgImageView.getBitmap(mContext, getWidth(), getHeight(), mSvgRawResourceId);
+                return SvgImageView.getBitmap(mContext, getMeasuredWidth(), getMeasuredHeight(), mSvgRawResourceId);
         }
         return null;
     }

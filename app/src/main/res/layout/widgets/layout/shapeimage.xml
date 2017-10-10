@@ -1,0 +1,52 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffaaaaaa"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <com.lijun.shapeimage.widgets.CustomShapeImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/shape_image_sample"
+            app:shape="circle"
+            android:scaleType="centerCrop" />
+
+        <com.lijun.shapeimage.widgets.CircleImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/shape_image_sample"
+            android:scaleType="centerCrop" />
+
+        <com.lijun.shapeimage.widgets.RectangleImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/shape_image_sample"
+            android:scaleType="centerCrop" />
+
+        <com.lijun.shapeimage.widgets.SvgImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/shape_image_sample"
+            app:svg_raw_resource="@raw/shape_star"
+            android:scaleType="centerCrop" />
+
+        <com.lijun.shapeimage.widgets.CustomShapeImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/shape_image_sample"
+            app:shape="svg"
+            app:svg_raw_resource="@raw/shape_heart"
+            android:scaleType="centerCrop" />
+    </LinearLayout>
+
+</RelativeLayout>

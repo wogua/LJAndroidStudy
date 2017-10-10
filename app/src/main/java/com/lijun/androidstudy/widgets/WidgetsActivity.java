@@ -22,14 +22,14 @@ public class WidgetsActivity extends ListActivity {
             "AVLoading Display",
             "AVLoadingIndicatorView",
             "Loading58",
-            "ExpandedPagedView3",
+            "ShapeImageView",
     };
 
     static int[] s_widgets_layout = new int[]{
             R.layout.loadingindicator_display,
             R.layout.loading_indicator,
             R.layout.loading_58_display,
-            R.layout.widget_expandpaged,
+            R.layout.shapeimage,
     };
 
     @Override

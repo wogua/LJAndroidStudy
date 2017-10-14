@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="delete_progress_btn_text">Clean up progress</string>
+    <string name="increase_the_progress_btn_text">Increase the progress： </string>
+
+</resources>

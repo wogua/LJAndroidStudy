@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="LeafLoadingProgressBar">
+        <attr name="leaf_amplitude" format="integer" /><!-- 振幅 -->
+        <attr name="leaf_rotate_speed" format="integer" /><!-- 叶子旋转速度 -->
+        <attr name="fan_rotate_speed" format="integer" /><!-- 风扇转动速度 -->
+        <attr name="leaf_move_speed" format="integer" /><!-- 叶子移动速度 -->
+        <attr name="leaf_color" format="reference" /><!-- 叶子颜色 -->
+        <attr name="fan_color" format="reference" /><!-- 风扇颜色 -->
+        <attr name="background_color" format="reference" /><!-- 背景颜色 -->
+    </declare-styleable>
+
+</resources>

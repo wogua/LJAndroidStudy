@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="leafloading_default_leaf_color">#fffde399</color>
+    <color name="leafloading_default_fan_color">#FFF0592B</color>
+    <color name="leafloading_default_backgroud_color">#FFF0592B</color>
+    <color name="leafloading_outline_color">#FFFFF5CC</color>
+    <color name="leafloading_outline_inner_color">#FFFFFCEE</color>
+</resources>

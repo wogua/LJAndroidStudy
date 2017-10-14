@@ -9,10 +9,14 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.VectorDrawable;
+import android.os.Handler;
+import android.os.Message;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Property;
@@ -21,14 +25,18 @@ import android.view.animation.LinearInterpolator;
 
 import com.lijun.androidstudy.R;
 
+import java.util.Random;
+
 public class LeafLoadingProgressBar extends View {
-    private static final String TAG = "LeafLoadingView";
+    private static final String TAG = "LeafLoadingProgressBar";
 
     private static final int MIN_LEAF_MOVE_SPEED = 100;
     private static final int MAX_LEAF_MOVE_SPEED = 500;
     private static final int TOTAL_PROGRESS = 100;
     private static final int MIN_FAN_ROTATE_TIME = 500;
     private static final int MAX_FAN_ROTATE_TIME = 5000;
+
+    private static final int MSG_REFRESH_PROGRESS = 1;
 
     private int mLeafColor;//叶子颜色 取值:1-100
     private int mLeafMoveSpeed;//叶子移动速度 取值:1-100
@@ -37,22 +45,38 @@ public class LeafLoadingProgressBar extends View {
     private int mFanRotateSpeed;//扇子旋转速度 取值:1-100
     private int mFanColor;//扇子颜色
 
-    private int mProgress;//0~100
+    private int mProgress;//当前进度 0~100
 
     private int mWidth, mHeight;
     private int mOutLinePadding;
+
+    //fan
     private int fanCicleRadius;
     private int fanCicleInnerRadius;
     private int fanCicleX;
     private int fanCicleY;
     private Rect fanRect;
     private int tempPadding = 5;//风扇与内圆间距
+
+    // progress
+    private int mProgressWidth;
+    private int mCurrentProgressPosition;
+    private int mArcCicle;//进度条左端的半圆半径
+    private int mProgressCicleAngle;
+    private RectF mArcRectF, mEmptyRectF, mArcEmptyRectF;
+    private float emptRectProgressLeft;
+    private float emptRectProgressRight;
+
     private AnimatedVectorDrawable fanDrawable;
     private Bitmap mBitmap;
 
-
     private Paint mOutLinePaint;
     private Paint mFanPaint;
+    private Paint mFillerPaint;
+    private Paint mFillerPaintDSTOver;
+    private Paint mEmptyPaint;
+
+    PorterDuffXfermode xfermode=new PorterDuffXfermode(PorterDuff.Mode.DST_OVER);
 
     private int mOutLineColor;
     private int mOutLineInnerColor;
@@ -79,6 +103,32 @@ public class LeafLoadingProgressBar extends View {
                 obj.invalidateOutline();
             }
 
+        }
+    };
+
+    Handler mHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case MSG_REFRESH_PROGRESS:
+                    if (mProgress < 40) {
+                        mProgress += 1;
+                        // 随机800ms以内刷新一次
+                        mHandler.sendEmptyMessageDelayed(MSG_REFRESH_PROGRESS,
+                                new Random().nextInt(800));
+                        LeafLoadingProgressBar.this.setProgress(mProgress);
+                    } else {
+                        mProgress += 1;
+                        // 随机1200ms以内刷新一次
+                        mHandler.sendEmptyMessageDelayed(MSG_REFRESH_PROGRESS,
+                                new Random().nextInt(1200));
+                        LeafLoadingProgressBar.this.setProgress(mProgress);
+
+                    }
+                    break;
+
+                default:
+                    break;
+            }
         }
     };
 
@@ -125,8 +175,18 @@ public class LeafLoadingProgressBar extends View {
         mOutLinePaint.setStyle(Paint.Style.FILL);
         mOutLinePaint.setColor(getResources().getColor(R.color.leafloading_outline_color));
 
-        mFanPaint = new Paint();
-        mFanPaint.setColor(mFanColor);
+        mFanPaint = new Paint(mFanColor);
+        mFillerPaint = new Paint();
+        mFillerPaint.setColor(mLeafColor);
+        mFillerPaint.setAntiAlias(true);
+        mFillerPaint.setStyle(Paint.Style.FILL);
+        mFillerPaintDSTOver = new Paint(mFillerPaint);
+        mFillerPaintDSTOver.setXfermode(xfermode);
+        mEmptyPaint = new Paint();
+        mEmptyPaint.setColor(Color.WHITE);
+        mEmptyPaint.setAntiAlias(true);
+        mEmptyPaint.setStyle(Paint.Style.FILL);
+        mEmptyPaint.setXfermode(xfermode);
 
         mOutLineColor = resources.getColor(R.color.leafloading_outline_color);
         mOutLineInnerColor = resources.getColor(R.color.leafloading_outline_inner_color);
@@ -134,7 +194,7 @@ public class LeafLoadingProgressBar extends View {
         //可以控制旋转速度
         VectorDrawable vectorDrawable = (VectorDrawable) getResources().getDrawable(R.drawable.fan);
         vectorDrawable.setTint(mFanColor);
-        mBitmap = UiUtils.getBitmapFromVectorDrawable(context,vectorDrawable);
+        mBitmap = UiUtils.getBitmapFromVectorDrawable(context, vectorDrawable);
 
         //不可动态调整旋转速度
         fanDrawable = (AnimatedVectorDrawable) getResources().getDrawable(R.drawable.fan_rotater);
@@ -169,27 +229,36 @@ public class LeafLoadingProgressBar extends View {
         fanCicleY = fanCicleRadius;
         int fanPadding = (int) (fanCicleRadius * 0.15);
         fanRect = new Rect(mWidth - fanCicleRadius - fanCicleInnerRadius + tempPadding, fanPadding + tempPadding, mWidth - fanPadding - tempPadding, mHeight - fanPadding - tempPadding);
+
+        mProgressWidth = mWidth - mOutLinePadding - fanCicleRadius;
+        mArcCicle = fanCicleRadius - mOutLinePadding;
+        mArcRectF = new RectF(mOutLinePadding, mOutLinePadding, mOutLinePadding + mArcCicle * 2, mHeight - mOutLinePadding);
+        emptRectProgressLeft = fanCicleRadius;
+        emptRectProgressRight = mWidth - fanCicleRadius;
     }
 
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
         startFanRotateAnimation();
+        mHandler.sendEmptyMessageDelayed(MSG_REFRESH_PROGRESS, 1000);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         drawStaticOutLines(canvas);
-        drawFan(canvas);
         drawProgressAndLeafs(canvas);
+        drawFan(canvas);
     }
 
     private void drawFan(Canvas canvas) {
+        canvas.save();
         canvas.clipRect(fanRect);
-//        canvas.rotate(mCurrentFanRotate,fanCicleX,fanCicleY);
-//        canvas.drawBitmap(mBitmap,null,fanRect,mFanPaint);
-        fanDrawable.setBounds(fanRect);
-        fanDrawable.draw(canvas);
+        canvas.rotate(mCurrentFanRotate, fanCicleX, fanCicleY);
+        canvas.drawBitmap(mBitmap, null, fanRect, mFanPaint);
+//        fanDrawable.setBounds(fanRect);
+//        fanDrawable.draw(canvas);
+        canvas.restore();
     }
 
     private void drawProgressAndLeafs(Canvas canvas) {
@@ -197,58 +266,24 @@ public class LeafLoadingProgressBar extends View {
         if (mProgress > TOTAL_PROGRESS) {
             mProgress = TOTAL_PROGRESS;
         }
-//        // mProgressWidth为进度条的宽度，根据当前进度算出进度条的位置
-//        mCurrentProgressPosition = mProgressWidth * mProgress / TOTAL_PROGRESS;
-//        // 即当前位置在图中所示1范围内
-//        if (mCurrentProgressPosition < mArcRadius) {
-//            Log.i(TAG, "mProgress = " + mProgress + "---mCurrentProgressPosition = "
-//                    + mCurrentProgressPosition
-//                    + "--mArcProgressWidth" + mArcRadius);
-//            // 1.绘制白色ARC，绘制orange ARC
-//            // 2.绘制白色矩形
-//
-//            // 1.绘制白色ARC
-//            canvas.drawArc(mArcRectF, 90, 180, false, mWhitePaint);
-//
-//            // 2.绘制白色矩形
-//            mWhiteRectF.left = mArcRightLocation;
-//            canvas.drawRect(mWhiteRectF, mWhitePaint);
-//
-//            // 绘制叶子
-//            drawLeafs(canvas);
-//
-//            // 3.绘制棕色 ARC
-//            // 单边角度
-//            int angle = (int) Math.toDegrees(Math.acos((mArcRadius - mCurrentProgressPosition)
-//                    / (float) mArcRadius));
-//            // 起始的位置
-//            int startAngle = 180 - angle;
-//            // 扫过的角度
-//            int sweepAngle = 2 * angle;
-//            Log.i(TAG, "startAngle = " + startAngle);
-//            canvas.drawArc(mArcRectF, startAngle, sweepAngle, false, mOrangePaint);
-//        } else {
-//            Log.i(TAG, "mProgress = " + mProgress + "---transfer-----mCurrentProgressPosition = "
-//                    + mCurrentProgressPosition
-//                    + "--mArcProgressWidth" + mArcRadius);
-//            // 1.绘制white RECT
-//            // 2.绘制Orange ARC
-//            // 3.绘制orange RECT
-//            // 这个层级进行绘制能让叶子感觉是融入棕色进度条中
-//
-//            // 1.绘制white RECT
-//            mWhiteRectF.left = mCurrentProgressPosition;
-//            canvas.drawRect(mWhiteRectF, mWhitePaint);
-//            // 绘制叶子
-//            drawLeafs(canvas);
-//            // 2.绘制Orange ARC
-//            canvas.drawArc(mArcRectF, 90, 180, false, mOrangePaint);
-//            // 3.绘制orange RECT
-//            mOrangeRectF.left = mArcRightLocation;
-//            mOrangeRectF.right = mCurrentProgressPosition;
-//            canvas.drawRect(mOrangeRectF, mOrangePaint);
-//
-//        }
+
+        if (mCurrentProgressPosition < mArcCicle) {
+            canvas.drawArc(mArcRectF, 90, 180, false, mEmptyPaint);
+            int startAngle = 180 - mProgressCicleAngle;
+            // 扫过的角度
+            int sweepAngle = 2 * mProgressCicleAngle;
+            canvas.drawArc(mArcRectF, startAngle, sweepAngle, false, mFillerPaint);
+            canvas.drawRect(emptRectProgressLeft,mArcRectF.top,emptRectProgressRight,mArcRectF.bottom,mEmptyPaint);
+        } else if(mCurrentProgressPosition < mProgressWidth - fanCicleRadius){
+            canvas.drawArc(mArcRectF, 90, 180, false, mFillerPaint);
+            canvas.drawRect(mArcCicle + mOutLinePadding,mArcRectF.top,emptRectProgressLeft,mArcRectF.bottom,mFillerPaint);
+            canvas.drawRect(emptRectProgressLeft,mArcRectF.top,emptRectProgressRight,mArcRectF.bottom,mEmptyPaint);
+        }else {
+            canvas.drawArc(mArcRectF, 90, 180, false, mFillerPaint);
+            canvas.drawRect(mArcCicle + mOutLinePadding,mArcRectF.top,mWidth - fanCicleRadius,mArcRectF.bottom,mFillerPaint);
+            canvas.drawRect(mWidth - fanCicleRadius,mArcRectF.top,emptRectProgressLeft,mArcRectF.bottom,mFillerPaintDSTOver);
+            canvas.drawRect(emptRectProgressLeft,mArcRectF.top,emptRectProgressRight,mArcRectF.bottom,mEmptyPaint);
+        }
 
     }
 
@@ -305,5 +340,39 @@ public class LeafLoadingProgressBar extends View {
         canvas.drawCircle(fanCicleX, fanCicleY, fanCicleRadius, mOutLinePaint);
         mOutLinePaint.setColor(mOutLineColor);
         canvas.drawCircle(fanCicleX, fanCicleY, fanCicleInnerRadius, mOutLinePaint);
+    }
+
+    public void setProgress(int progress) {
+        Log.d(TAG, "setProgress progress : " + progress);
+        mProgress = progress;
+        if (mProgress > TOTAL_PROGRESS) {
+            mProgress = TOTAL_PROGRESS;
+            stopProgessLoading();
+        } else if (mProgress < 0) {
+            mProgress = 0;
+        }
+        mCurrentProgressPosition = mProgressWidth * mProgress / TOTAL_PROGRESS;
+        if (mCurrentProgressPosition < mArcCicle) {
+            mProgressCicleAngle = (int) Math.toDegrees(Math.acos((mArcCicle - mCurrentProgressPosition)
+                    / (float) mArcCicle));
+            emptRectProgressLeft = mArcCicle + mOutLinePadding;
+        }else {
+            emptRectProgressLeft = mCurrentProgressPosition + mOutLinePadding;
+        }
+        invalidate();
+    }
+
+    private void stopProgessLoading() {
+        if (mFanRotateAnimator != null) {
+            mFanRotateAnimator.cancel();
+            mFanRotateAnimator = null;
+        }
+        mHandler.removeMessages(MSG_REFRESH_PROGRESS);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        stopProgessLoading();
     }
 }

@@ -24,6 +24,7 @@ public class WidgetsActivity extends ListActivity {
             "Loading58",
             "ShapeImageView",
             "LeafLoadingProgressBar",
+            "WaveView",
     };
 
     static int[] s_widgets_layout = new int[]{
@@ -32,6 +33,7 @@ public class WidgetsActivity extends ListActivity {
             R.layout.loading_58_display,
             R.layout.shapeimage,
             R.layout.leafloading,
+            R.layout.waveview,
     };
 
     @Override

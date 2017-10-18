@@ -17,8 +17,4 @@
         app:empty_progress_color="@color/leafloading_empty_progress_color"
         />
 
-
-    <!--<com.lijun.progressbar.leafloading.TestView
-        android:layout_width="200dp"
-        android:layout_height="200dp" />-->
 </RelativeLayout>

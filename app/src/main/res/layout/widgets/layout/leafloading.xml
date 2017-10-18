@@ -8,11 +8,14 @@
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_centerInParent="true"
-        app:leaf_amplitude="50"
+        app:leaf_rotate_time="1000"
+        app:leaf_move_float_time="2000"
         app:leaf_color="@color/leafloading_default_leaf_color"
+        app:fan_rotate_time="1000"
         app:fan_color="@color/leafloading_default_fan_color"
-        app:leaf_move_speed="50"
-        app:fan_rotate_speed="60"/>
+        app:background_color="@color/leafloading_default_backgroud_color"
+        app:empty_progress_color="@color/leafloading_empty_progress_color"
+        />
 
 
     <!--<com.lijun.progressbar.leafloading.TestView

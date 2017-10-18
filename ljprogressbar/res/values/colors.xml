@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="leafloading_default_leaf_color">#fffde399</color>
-    <color name="leafloading_default_fan_color">#FFF0592B</color>
-    <color name="leafloading_default_backgroud_color">#FFF0592B</color>
-    <color name="leafloading_outline_color">#FFFFF5CC</color>
-    <color name="leafloading_outline_inner_color">#FFFFFCEE</color>
+    <color name="leafloading_default_leaf_color">#29e129</color>
+    <color name="leafloading_default_fan_color">#07a728</color>
+    <color name="leafloading_default_backgroud_color">#edd5ce</color>
+    <color name="leafloading_backgroud_color">#fae48b</color>
+    <color name="leafloading_empty_progress_color">#FFFFFCEE</color>
 </resources>

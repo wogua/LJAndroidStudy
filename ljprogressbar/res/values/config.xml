@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="default_leaf_rotate_duration" >1000</integer>
+    <integer name="default_leaf_float_duration" >2000</integer>
+    <integer name="default_fan_rotate_duration" >1000</integer>
+
+</resources>

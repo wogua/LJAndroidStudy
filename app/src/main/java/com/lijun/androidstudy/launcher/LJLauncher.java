@@ -12,8 +12,10 @@ import org.xmlpull.v1.XmlPullParserException;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase;
 import com.lijun.androidstudy.R;
+import com.lijun.androidstudy.util.PhotoUtils;
 import com.lijun.androidstudy.util.Utilities;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -152,6 +154,10 @@ public class LJLauncher extends Activity implements View.OnClickListener {
 
             final int depth = parser.getDepth();
 
+            Bitmap zoomTemp = BitmapFactory.decodeResource(res, R.drawable.zoom_temp);
+            int tempW = zoomTemp.getWidth();
+            int tempH = zoomTemp.getHeight();
+
             int type;
             while (((type = parser.next()) != XmlPullParser.END_TAG ||
                     parser.getDepth() > depth) && type != XmlPullParser.END_DOCUMENT) {
@@ -165,7 +171,8 @@ public class LJLauncher extends Activity implements View.OnClickListener {
                 cell.name = a.getString(R.styleable.Cell_name);
                 cell.className = a.getString(R.styleable.Cell_className);
                 cell.packageName = a.getString(R.styleable.Cell_packageName);
-                cell.icon = BitmapFactory.decodeResource(res, a.getResourceId(R.styleable.Cell_icon, 0));
+                cell.icon = PhotoUtils.zoom(BitmapFactory.decodeResource(res, a.getResourceId(R.styleable.Cell_icon, 0)),tempW,tempH);
+//                cell.icon = BitmapFactory.decodeResource(res, a.getResourceId(R.styleable.Cell_icon, 0));
                 cells.add(cell);
                 a.recycle();
             }

@@ -65,10 +65,10 @@
         cell:icon="@drawable/ic_widgets"
         cell:name="@string/widgets_title" />
     <cell
-        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:className="com.lijun.progressbar.dymbutton.DymButtonActivity"
         cell:packageName="com.lijun.androidstudy"
-        cell:icon="@drawable/drawaspen"
-        cell:name="@string/upShadowLockScreen_title" />
+        cell:icon="@drawable/ic_dym_button"
+        cell:name="@string/dymbutton_name" />
     <cell
         cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
         cell:packageName="com.lijun.androidstudy"

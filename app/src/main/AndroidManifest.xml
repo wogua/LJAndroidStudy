@@ -152,6 +152,14 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.lijun.progressbar.dymbutton.DymButtonActivity"
+            android:label="@string/dymbutton_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
 
         <service
             android:name="com.lijun.androidstudy.floatmeltitask.FloatMultiTaskService"

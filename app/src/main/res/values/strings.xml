@@ -79,4 +79,6 @@
     <!-- Widgets -->
     <string name="widgets_title">控件组</string>
 
+    <!-- app share -->
+    <string name="app_share_title">应用分享</string>
 </resources>

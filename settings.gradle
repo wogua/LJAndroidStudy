@@ -1,1 +1,1 @@
-include ':app', ':loadingindicator', ':slidingmenu'
+include ':app', ':loadingindicator', ':slidingmenu', ':libzxing'

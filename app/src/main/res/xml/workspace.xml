@@ -78,11 +78,14 @@
         cell:packageName="com.lijun.androidstudy"
         cell:icon="@drawable/ic_app_share"
         cell:name="@string/app_share_title" />
+
+
+    <!-- 二维码QR -->
     <cell
-        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:className="com.lijun.androidstudy.qrcode.QRCodeDemoActivity"
         cell:packageName="com.lijun.androidstudy"
-        cell:icon="@drawable/drawaspen"
-        cell:name="@string/upShadowLockScreen_title" />
+        cell:icon="@drawable/ic_app_share"
+        cell:name="@string/app_share_title" />
     
     <cell
         cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"

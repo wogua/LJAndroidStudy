@@ -10,13 +10,16 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase;
 import com.lijun.androidstudy.R;
 import com.lijun.androidstudy.util.PhotoUtils;
 import com.lijun.androidstudy.util.Utilities;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Xml;
@@ -42,6 +45,10 @@ import android.graphics.BitmapFactory;
 
 public class LJLauncher extends Activity implements View.OnClickListener {
     private static String TAG = "LJMain";
+    public static String[] sAllPermissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA,
+            Manifest.permission.READ_SMS, Manifest.permission.READ_PHONE_STATE, Manifest.permission.BLUETOOTH};
+    public static final int REQUEST_PERMISSION_ALL = 0;//add for checkAllPermission
+
     private LayoutInflater mInflater;
     private String TAG_WORKSPACE = "cells";
 
@@ -55,14 +62,16 @@ public class LJLauncher extends Activity implements View.OnClickListener {
     private int cellSize = 0;
     private int screens = 0;
 
-    private View slideMenuView ;
+    private View slideMenuView;
     private ListView slideMenuLlistView;
-    int[] mSlideStyles ;
+    int[] mSlideStyles;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.launcher);
 
+        checkPermission();
         mLauncherView = (View) findViewById(R.id.launcher);
         mWorkspace = (LJWorkSpace) findViewById(R.id.workspace);
         mInflater = getLayoutInflater();
@@ -74,14 +83,13 @@ public class LJLauncher extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         // TODO Auto-generated method stub
         if (v instanceof LJCellView) {
-            LJCellView cv = (LJCellView)v;
+            LJCellView cv = (LJCellView) v;
             Log.i(TAG, "onClick v : " + cv.getTitle());
-            if(cv.intent != null){
+            if (cv.intent != null) {
                 startActivitySafety(cv.intent);
             }
         }
     }
-
 
 
     @Override
@@ -123,20 +131,20 @@ public class LJLauncher extends Activity implements View.OnClickListener {
     private void bindWorkspace() {
         Log.e(TAG, "bindWorkspace");
         mCellInfos = (ArrayList<LJCellInfo>) loadCellsFromXml(R.xml.workspace);
-        if(mCellInfos == null || mCellInfos.size() == 0) {
+        if (mCellInfos == null || mCellInfos.size() == 0) {
             Log.e(TAG, "no cell");
             return;
         }
         cellSize = mCellInfos.size();
-        screens = (cellSize%(ROWS*COLUMNS) == 0)?cellSize/(ROWS*COLUMNS):(cellSize/(ROWS*COLUMNS)+1);
-        for(int i = 0 ; i < screens ; i ++){
+        screens = (cellSize % (ROWS * COLUMNS) == 0) ? cellSize / (ROWS * COLUMNS) : (cellSize / (ROWS * COLUMNS) + 1);
+        for (int i = 0; i < screens; i++) {
             LJCellLayout cellLaout = new LJCellLayout(this);
-            int start = i*ROWS*COLUMNS;
-            int end = (i+1)*ROWS*COLUMNS -1;
-            end = end > (cellSize-1) ? (cellSize-1):end;
+            int start = i * ROWS * COLUMNS;
+            int end = (i + 1) * ROWS * COLUMNS - 1;
+            end = end > (cellSize - 1) ? (cellSize - 1) : end;
 
-            for(int j = start ; j <= end ; j ++){
-                LJCellView cellView = createLJCellView(cellLaout,mCellInfos.get(j));
+            for (int j = start; j <= end; j++) {
+                LJCellView cellView = createLJCellView(cellLaout, mCellInfos.get(j));
                 cellLaout.addView(cellView);
             }
             mWorkspace.addView(cellLaout);
@@ -171,7 +179,7 @@ public class LJLauncher extends Activity implements View.OnClickListener {
                 cell.name = a.getString(R.styleable.Cell_name);
                 cell.className = a.getString(R.styleable.Cell_className);
                 cell.packageName = a.getString(R.styleable.Cell_packageName);
-                cell.icon = PhotoUtils.zoom(BitmapFactory.decodeResource(res, a.getResourceId(R.styleable.Cell_icon, 0)),tempW,tempH);
+                cell.icon = PhotoUtils.zoom(BitmapFactory.decodeResource(res, a.getResourceId(R.styleable.Cell_icon, 0)), tempW, tempH);
 //                cell.icon = BitmapFactory.decodeResource(res, a.getResourceId(R.styleable.Cell_icon, 0));
                 cells.add(cell);
                 a.recycle();
@@ -206,7 +214,7 @@ public class LJLauncher extends Activity implements View.OnClickListener {
         }
     }
 
-    private LJCellView createLJCellView(ViewGroup parent ,LJCellInfo cellInfo ) {
+    private LJCellView createLJCellView(ViewGroup parent, LJCellInfo cellInfo) {
         LJCellView cellView = (LJCellView) mInflater.inflate(R.layout.cell_layout,
                 parent, false);
         cellView.setmCellInfo(cellInfo);
@@ -224,15 +232,15 @@ public class LJLauncher extends Activity implements View.OnClickListener {
         }
     }
 
-    public int getScrollStyle(){
-        if(mWorkspace != null){
+    public int getScrollStyle() {
+        if (mWorkspace != null) {
             return mWorkspace.mScrollStyle;
-        }else{
+        } else {
             return LJWorkSpace.SCROLL_STYLE_CLASSICS;
         }
     }
 
-    public void setScrollStyle(int style){
+    public void setScrollStyle(int style) {
         switch (style) {
             case LJWorkSpace.SCROLL_STYLE_CLASSICS:
             case LJWorkSpace.SCROLL_STYLE_CUBE:
@@ -248,28 +256,30 @@ public class LJLauncher extends Activity implements View.OnClickListener {
                 break;
         }
         mWorkspace.scrollStyleChanged(style);
-        SharedPreferences sp= getSharedPreferences("LJLauncher", Activity.MODE_PRIVATE);
+        SharedPreferences sp = getSharedPreferences("LJLauncher", Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putInt(LJWorkSpace.SCROLL_STYLE_KEY, style);
         editor.commit();
     }
 
-    class SlideMenuListAdapter extends BaseAdapter{
+    class SlideMenuListAdapter extends BaseAdapter {
 
         private List<Map<String, Object>> data;
         private LayoutInflater layoutInflater;
         private Context context;
-        public SlideMenuListAdapter(Context context,List<Map<String, Object>> data) {
-            this.context=context;
-            this.data=data;
-            this.layoutInflater=LayoutInflater.from(context);
+
+        public SlideMenuListAdapter(Context context, List<Map<String, Object>> data) {
+            this.context = context;
+            this.data = data;
+            this.layoutInflater = LayoutInflater.from(context);
         }
 
-        final class SlideMenuItem{
+        final class SlideMenuItem {
             ImageView slideMenuItemIconView;
             TextView slideMenuItemTextView;
             int slideStyle;
         }
+
         @Override
         public int getCount() {
             // TODO Auto-generated method stub
@@ -295,16 +305,16 @@ public class LJLauncher extends Activity implements View.OnClickListener {
             if (convertView == null) {
                 itemLayout = new SlideMenuItem();
                 convertView = mInflater.inflate(R.layout.slide_menu_list_item, null);
-                itemLayout.slideMenuItemIconView =  (ImageView)convertView.findViewById(R.id.slide_menu_icon);
-                itemLayout.slideMenuItemTextView =  (TextView)convertView.findViewById(R.id.slide_menu_title);
+                itemLayout.slideMenuItemIconView = (ImageView) convertView.findViewById(R.id.slide_menu_icon);
+                itemLayout.slideMenuItemTextView = (TextView) convertView.findViewById(R.id.slide_menu_title);
                 itemLayout.slideStyle = mSlideStyles[position];
                 convertView.setTag(itemLayout);
                 convertView.setOnClickListener(mSlidingMenuItemClick);
-            }else{
-                itemLayout = (SlideMenuItem)convertView.getTag();
+            } else {
+                itemLayout = (SlideMenuItem) convertView.getTag();
             }
-            itemLayout.slideMenuItemIconView.setImageResource((Integer)data.get(position).get("icon"));
-            itemLayout.slideMenuItemTextView.setText((String)data.get(position).get("title"));
+            itemLayout.slideMenuItemIconView.setImageResource((Integer) data.get(position).get("icon"));
+            itemLayout.slideMenuItemTextView.setText((String) data.get(position).get("title"));
             return convertView;
         }
     }
@@ -328,7 +338,7 @@ public class LJLauncher extends Activity implements View.OnClickListener {
         return list;
     }
 
-    private View.OnClickListener mSlidingMenuItemClick = new View.OnClickListener(){
+    private View.OnClickListener mSlidingMenuItemClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             SlideMenuListAdapter.SlideMenuItem itemLayout = (SlideMenuListAdapter.SlideMenuItem) v.getTag();
@@ -338,10 +348,10 @@ public class LJLauncher extends Activity implements View.OnClickListener {
 
     public void initSlidingMenu() {
         LayoutInflater inflater = LayoutInflater.from(this);
-        slideMenuView = inflater.inflate(R.layout.slide_menu,(ViewGroup) mLauncherView,false);
+        slideMenuView = inflater.inflate(R.layout.slide_menu, (ViewGroup) mLauncherView, false);
         slideMenuLlistView = (ListView) slideMenuView.findViewById(R.id.slide_menu_list);
-        List<Map<String, Object>> data=getData();
-        slideMenuLlistView.setAdapter(new SlideMenuListAdapter(this,data));
+        List<Map<String, Object>> data = getData();
+        slideMenuLlistView.setAdapter(new SlideMenuListAdapter(this, data));
 
         SlidingMenu localSlidingMenu = new SlidingMenu(this);
         localSlidingMenu.setMode(SlidingMenu.LEFT);//设置左右滑菜单
@@ -361,5 +371,32 @@ public class LJLauncher extends Activity implements View.OnClickListener {
 
             }
         });
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if(requestCode == REQUEST_PERMISSION_ALL){//lijun add for checkAllPermission
+            if (grantResults.length > 0) {
+
+            }
+        }
+    }
+
+    private void checkPermission() {
+        List<String> noOkPermissions = new ArrayList<>();
+
+        for (String permission : sAllPermissions) {
+            if (ActivityCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_DENIED) {
+                noOkPermissions.add(permission);
+            }
+        }
+        if (noOkPermissions.size() <= 0)
+            return;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(noOkPermissions.toArray(new String[noOkPermissions.size()]), REQUEST_PERMISSION_ALL);
+        }
     }
 }

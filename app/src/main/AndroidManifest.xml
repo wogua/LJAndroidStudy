@@ -18,24 +18,26 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
-    <uses-permission android:name="com.android.launcher3.LauncherProvider"/>
-    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
-    <uses-permission android:name="com.android.launcher3.permission.READ_SETTINGS"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="com.android.launcher3.LauncherProvider" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.launcher3.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
         android:name="LJApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.NoTitleBar" >
+        android:theme="@android:style/Theme.NoTitleBar">
 
         <activity
             android:name="com.lijun.androidstudy.welcomeViewPager.GuideActivity"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,8 +47,8 @@
 
         <activity
             android:name="com.lijun.androidstudy.launcher.LJLauncher"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -54,7 +56,7 @@
 
         <activity
             android:name="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -62,7 +64,7 @@
 
         <activity
             android:name="com.lijun.androidstudy.waterfall.WaterFallActivity"
-            android:label="@string/waterFall_title" >
+            android:label="@string/waterFall_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -70,8 +72,8 @@
 
         <activity
             android:name="com.lijun.androidstudy.upshadowlockscreen.USLockScreenActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/upShadowLockScreen_title" >
+            android:label="@string/upShadowLockScreen_title"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -80,9 +82,9 @@
         <activity
             android:name=".flashlight.FlashLight"
             android:launchMode="singleTask"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" >
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -91,8 +93,8 @@
 
         <activity
             android:name="com.lijun.androidstudy.drawAsPen.DrawAsPenActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/drawAsPen_title" >
+            android:label="@string/drawAsPen_title"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -100,8 +102,8 @@
 
         <activity
             android:name="com.lijun.androidstudy.halo.HaloActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/halo_title" >
+            android:label="@string/halo_title"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -109,81 +111,28 @@
 
         <activity
             android:name="com.lijun.androidstudy.floatmeltitask.FloatMultiTaskActivity"
-            android:theme="@android:style/Theme.Black"
-            android:label="@string/floatmeltitask_settings_title" >
+            android:label="@string/floatmeltitask_settings_title"
+            android:theme="@android:style/Theme.Black">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="com.lijun.androidstudy.floatmultitask.SETTINGS" />
             </intent-filter>
         </activity>
 
-        <activity
-            android:name="com.lijun.androidstudy.ebook.EbookReader"
-            android:screenOrientation="portrait"
-            android:label="@string/ebook_title" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name="com.lijun.androidstudy.icontools.IconToolsActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:label="@string/icontools_title" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name="com.lijun.androidstudy.widgets.WidgetsActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/widgets_title" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name="com.lijun.androidstudy.widgets.WidgetsDisplayActivity"
-            android:label="@string/widgets_title" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name="com.lijun.progressbar.dymbutton.DymButtonActivity"
-            android:label="@string/dymbutton_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name="com.lijun.androidstudy.bluetoothChat.BluetoothChatActivity"
-            android:label="@string/app_share_title" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-
         <service
             android:name="com.lijun.androidstudy.floatmeltitask.FloatMultiTaskService"
             android:enabled="true"
-            android:exported="true" >
-        </service>
+            android:exported="true"></service>
 
         <service
             android:name="com.lijun.androidstudy.floatmeltitask.BackTaskService"
             android:enabled="true"
-            android:exported="true" >
-        </service>
+            android:exported="true"></service>
 
         <receiver
             android:name="com.lijun.androidstudy.floatmeltitask.FloatMultiTaskReceiver"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.malata.floatmultitask.action.changestatus" />
                 <action android:name="com.malata.floatmultitask.action.close" />
@@ -195,6 +144,84 @@
                 <action android:name="com.malata.floatmultitask.action.enableautoshowsms" />
             </intent-filter>
         </receiver>
+
+        <activity
+            android:name="com.lijun.androidstudy.ebook.EbookReader"
+            android:label="@string/ebook_title"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.lijun.androidstudy.icontools.IconToolsActivity"
+            android:label="@string/icontools_title"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.lijun.androidstudy.widgets.WidgetsActivity"
+            android:label="@string/widgets_title"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.lijun.androidstudy.widgets.WidgetsDisplayActivity"
+            android:label="@string/widgets_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.lijun.progressbar.dymbutton.DymButtonActivity"
+            android:label="@string/dymbutton_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.lijun.androidstudy.bluetoothChat.BluetoothChatActivity"
+            android:label="@string/app_share_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <!-- 二维码分享 -->
+        <activity
+            android:name="com.lijun.androidstudy.qrcode.QRCodeDemoActivity"
+            android:label="@string/app_share_title"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.lijun.androidstudy.qrcode.QRCodeShareActivity"
+            android:label="@string/qrcode_share_title"
+            android:theme="@style/Theme.AppCompat.Dialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name="com.ywq.broadcast.BluetoothReceiver" >
+            <intent-filter android:priority="1000">
+                <action android:name="android.bluetooth.device.action.PAIRING_REQUEST"/>
+                <action android:name="android.bluetooth.device.action.FOUND" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 

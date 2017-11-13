@@ -81,4 +81,5 @@
 
     <!-- app share -->
     <string name="app_share_title">应用分享</string>
+    <string name="qrcode_share_title">二维码分享</string>
 </resources>

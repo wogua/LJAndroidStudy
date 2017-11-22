@@ -82,4 +82,7 @@
     <!-- app share -->
     <string name="app_share_title">应用分享</string>
     <string name="qrcode_share_title">二维码分享</string>
+
+    <string name="view_explosion_test">爆炸效果</string>
+    <string name="view_explosion_test_title">打开爆炸效果模式</string>
 </resources>

@@ -215,12 +215,21 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name="com.ywq.broadcast.BluetoothReceiver" >
+        <receiver android:name="com.lijun.androidstudy.qrcode.BluetoothReceiver" >
             <intent-filter android:priority="1000">
                 <action android:name="android.bluetooth.device.action.PAIRING_REQUEST"/>
                 <action android:name="android.bluetooth.device.action.FOUND" />
             </intent-filter>
         </receiver>
+
+        <activity
+            android:name="com.lijun.viewexplosion.test.TestViewExplosionActivity"
+            android:label="@string/view_explosion_test"
+            android:theme="@style/Theme.AppCompat.Dialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
 
     </application>
 

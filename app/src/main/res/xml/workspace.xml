@@ -86,12 +86,13 @@
         cell:packageName="com.lijun.androidstudy"
         cell:icon="@drawable/ic_app_share"
         cell:name="@string/app_share_title" />
-    
+
+    <!-- view 爆炸效果 -->
     <cell
-        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:className="com.lijun.viewexplosion.test.TestViewExplosionActivity"
         cell:packageName="com.lijun.androidstudy"
-        cell:icon="@drawable/drawaspen"
-        cell:name="@string/upShadowLockScreen_title" />
+        cell:icon="@drawable/bang"
+        cell:name="@string/view_explosion_test" />
     <cell
         cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
         cell:packageName="com.lijun.androidstudy"

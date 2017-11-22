@@ -25,9 +25,9 @@ android {
         main {
             assets.srcDirs = ['assets']
 
-            res.srcDirs = ['src/main/res/layout/widgets', 'src/main/res/layout', 'src/main/res','../shapeimage/res','../ljprogressbar/res']
+            res.srcDirs = ['src/main/res/layout/widgets', 'src/main/res/layout', 'src/main/res','../shapeimage/res','../ljprogressbar/res','../viewexplosion/res']
 
-            java.srcDirs = ['src/main/java','../shapeimage/src','../ljprogressbar/src']
+            java.srcDirs = ['src/main/java','../shapeimage/src','../ljprogressbar/src','../viewexplosion/src']
         }
     }
 }

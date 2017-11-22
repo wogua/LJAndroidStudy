@@ -13,8 +13,12 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.lijun.androidstudy.R;
 import com.lijun.androidstudy.util.PhotoUtils;
 import com.lijun.androidstudy.util.Utilities;
+import com.lijun.viewexplosion.ExplosionField;
+import com.lijun.viewexplosion.factory.ParticleFactory;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Build;
@@ -26,7 +30,6 @@ import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -42,12 +45,15 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.content.res.XmlResourceParser;
 import android.graphics.BitmapFactory;
+import android.widget.Toast;
 
 public class LJLauncher extends Activity implements View.OnClickListener {
     private static String TAG = "LJMain";
     public static String[] sAllPermissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA,
             Manifest.permission.READ_SMS, Manifest.permission.READ_PHONE_STATE, Manifest.permission.BLUETOOTH};
     public static final int REQUEST_PERMISSION_ALL = 0;//add for checkAllPermission
+
+    public static boolean sExpolosionMode = false;
 
     private LayoutInflater mInflater;
     private String TAG_WORKSPACE = "cells";
@@ -77,6 +83,50 @@ public class LJLauncher extends Activity implements View.OnClickListener {
         mInflater = getLayoutInflater();
         initSlidingMenu();
         bindWorkspace();
+        registerBroadcastReceiver();
+    }
+
+    public void registerBroadcastReceiver() {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("com.lijun.androidstudy.EXPLOSION_CHANGED");
+        registerReceiver(mBroadcastReceiver, filter);
+    }
+
+    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (action.equals("com.lijun.androidstudy.EXPLOSION_CHANGED")) {
+                boolean isOpened = intent.getBooleanExtra("opened",false);
+                onExpolosionChanged(isOpened);
+            }
+        }
+    };
+
+    private void onExpolosionChanged(boolean isOpened) {
+        if (isOpened) {
+            Toast.makeText(getApplicationContext(), "Explosion Mode Opened",
+                    Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Explosion Mode Closed",
+                    Toast.LENGTH_LONG).show();
+        }
+        sExpolosionMode = isOpened;
+        if (mWorkspace != null && mWorkspace.getChildCount() > 0) {
+            for (int i = 0; i < mWorkspace.getChildCount(); i++) {
+                LJCellLayout ljCellLayout = (LJCellLayout) mWorkspace.getChildAt(i);
+                for (int j = 0; j < ljCellLayout.getChildCount(); j++) {
+                    LJCellView cellView = (LJCellView) ljCellLayout.getChildAt(j);
+                    LJCellInfo cellInfo = cellView.getmCellInfo();
+                    if (isOpened&&!"com.lijun.viewexplosion.test.TestViewExplosionActivity".equals(cellInfo.className)) {
+                        ExplosionField explosionField = new ExplosionField(this, ParticleFactory.getRandomParticle(j)/*new FallingParticleFactory()*/);
+                        explosionField.addListener(cellView);
+                    } else {
+                        cellView.setOnClickListener(this);
+                    }
+                }
+            }
+        }
     }
 
     @Override
@@ -91,6 +141,11 @@ public class LJLauncher extends Activity implements View.OnClickListener {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(mBroadcastReceiver);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -145,6 +200,7 @@ public class LJLauncher extends Activity implements View.OnClickListener {
 
             for (int j = start; j <= end; j++) {
                 LJCellView cellView = createLJCellView(cellLaout, mCellInfos.get(j));
+                ///for view explosion example
                 cellLaout.addView(cellView);
             }
             mWorkspace.addView(cellLaout);

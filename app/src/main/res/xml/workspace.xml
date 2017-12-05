@@ -101,11 +101,13 @@
         cell:icon="@drawable/droid"
         cell:name="@string/droid_flakes" />
 
+    <!-- 照片池 -->
     <cell
-        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:className="com.lijun.androidstudy.rajawalidemo.Photograph"
         cell:packageName="com.lijun.androidstudy"
-        cell:icon="@drawable/drawaspen"
-        cell:name="@string/upShadowLockScreen_title" />
+        cell:icon="@drawable/shape_image_sample"
+        cell:name="@string/photograph" />
+
     <cell
         cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
         cell:packageName="com.lijun.androidstudy"

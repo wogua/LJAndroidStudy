@@ -222,10 +222,20 @@
             </intent-filter>
         </receiver>
 
+        <!-- 爆炸效果 -->
         <activity
             android:name="com.lijun.viewexplosion.test.TestViewExplosionActivity"
             android:label="@string/view_explosion_test"
             android:theme="@style/Theme.AppCompat.Dialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <!-- 机器人掉落 -->
+        <activity
+            android:name="com.lijun.androidstudy.droidflakes.Droidflakes"
+            android:label="@string/droid_flakes">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>

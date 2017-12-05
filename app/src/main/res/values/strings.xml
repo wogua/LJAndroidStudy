@@ -85,4 +85,6 @@
 
     <string name="view_explosion_test">爆炸效果</string>
     <string name="view_explosion_test_title">打开爆炸效果模式</string>
+
+    <string name="droid_flakes">Droidflakes</string>
 </resources>

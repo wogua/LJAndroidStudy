@@ -93,11 +93,14 @@
         cell:packageName="com.lijun.androidstudy"
         cell:icon="@drawable/bang"
         cell:name="@string/view_explosion_test" />
+
+    <!-- Droidflakes -->
     <cell
-        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:className="com.lijun.androidstudy.droidflakes.Droidflakes"
         cell:packageName="com.lijun.androidstudy"
-        cell:icon="@drawable/drawaspen"
-        cell:name="@string/upShadowLockScreen_title" />
+        cell:icon="@drawable/droid"
+        cell:name="@string/droid_flakes" />
+
     <cell
         cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
         cell:packageName="com.lijun.androidstudy"

@@ -218,7 +218,9 @@ public class LJLauncher extends Activity implements View.OnClickListener {
 
             final int depth = parser.getDepth();
 
-            Bitmap zoomTemp = BitmapFactory.decodeResource(res, R.drawable.zoom_temp);
+            Bitmap maskBitmap = BitmapFactory.decodeResource(res, R.drawable.ic_mask);
+            Bitmap bgBitmap = BitmapFactory.decodeResource(res, R.drawable.ic_bg);
+            Bitmap zoomTemp = BitmapFactory.decodeResource(res, R.drawable.ic_zoom_template);
             int tempW = zoomTemp.getWidth();
             int tempH = zoomTemp.getHeight();
 
@@ -235,7 +237,9 @@ public class LJLauncher extends Activity implements View.OnClickListener {
                 cell.name = a.getString(R.styleable.Cell_name);
                 cell.className = a.getString(R.styleable.Cell_className);
                 cell.packageName = a.getString(R.styleable.Cell_packageName);
-                cell.icon = PhotoUtils.zoom(BitmapFactory.decodeResource(res, a.getResourceId(R.styleable.Cell_icon, 0)), tempW, tempH);
+//                cell.icon = PhotoUtils.zoom(BitmapFactory.decodeResource(res, a.getResourceId(R.styleable.Cell_icon, 0)), tempW, tempH);
+                cell.icon = PhotoUtils.compositeByBitmap(BitmapFactory.decodeResource(res, a.getResourceId(R.styleable.Cell_icon, 0)),maskBitmap,bgBitmap,zoomTemp,false);
+
 //                cell.icon = BitmapFactory.decodeResource(res, a.getResourceId(R.styleable.Cell_icon, 0));
                 cells.add(cell);
                 a.recycle();

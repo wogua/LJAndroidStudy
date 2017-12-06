@@ -112,8 +112,8 @@
     <cell
         cell:className="com.lijun.androidstudy.rajawalidemo.skybox.SkyboxActivity"
         cell:packageName="com.lijun.androidstudy"
-        cell:icon="@drawable/drawaspen"
-        cell:name="@string/upShadowLockScreen_title" />
+        cell:icon="@drawable/ic_vr_show"
+        cell:name="@string/skybox" />
     
     <!-- screen 1 -->
     <cell

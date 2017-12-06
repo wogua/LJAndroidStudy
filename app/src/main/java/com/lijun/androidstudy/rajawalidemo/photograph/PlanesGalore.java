@@ -1,4 +1,4 @@
-package com.lijun.androidstudy.rajawalidemo;
+package com.lijun.androidstudy.rajawalidemo.photograph;
 
 import android.graphics.Color;
 import android.opengl.GLES20;
@@ -58,12 +58,12 @@ public class PlanesGalore extends Object3D {
 		final float planeSize = .3f;
 
 		int numVertices = numPlanes * 4;
-		float[] vertices = new float[numVertices * 3];
-		float[] textureCoords = new float[numVertices * 2];
-		float[] normals = new float[numVertices * 3];
-		float[] planePositions = new float[numVertices * 3];
-		float[] rotationSpeeds = new float[numVertices];
-		float[] colors = new float[numVertices * 4];
+		float[] vertices = new float[numVertices * 3];//顶点坐标
+		float[] textureCoords = new float[numVertices * 2];//纹理坐标
+		float[] normals = new float[numVertices * 3];//法向量
+		float[] planePositions = new float[numVertices * 3];//图片位置
+		float[] rotationSpeeds = new float[numVertices];//图片旋转速度
+		float[] colors = new float[numVertices * 4];//图片的颜色 ARGB
 		int[] indices = new int[numPlanes * 6];
 
 		for (int i = 0; i < numPlanes; ++i) {
@@ -71,6 +71,7 @@ public class PlanesGalore extends Object3D {
 			int randColor = 0xff000000 + (int) (0xffffff * Math.random());
 
 			int vIndex = i * 4 * 3;
+			//每个图片4个定点的坐标
 			vertices[vIndex + 0] = -planeSize;
 			vertices[vIndex + 1] = planeSize;
 			vertices[vIndex + 2] = 0;
@@ -107,7 +108,7 @@ public class PlanesGalore extends Object3D {
 
 			float u1 = .25f * (int) Math.floor(Math.random() * 4f);
 			float v1 = .25f * (int) Math.floor(Math.random() * 4f);
-			float u2 = u1 + .25f;
+			float u2 = u1 + .25f;//0.25 - 1.25
 			float v2 = v1 + .25f;
 
 			textureCoords[vIndex + 0] = u2;
@@ -128,7 +129,7 @@ public class PlanesGalore extends Object3D {
 			indices[iindex + 4] = (short) (vIndex + 2);
 			indices[iindex + 5] = (short) (vIndex + 3);
 
-			float rotationSpeed = -1f + (float) (Math.random() * 2f);
+			float rotationSpeed = -1f + (float) (Math.random() * 2f);//旋转速度1 ~ 3
 			rotationSpeeds[vIndex + 0] = rotationSpeed;
 			rotationSpeeds[vIndex + 1] = rotationSpeed;
 			rotationSpeeds[vIndex + 2] = rotationSpeed;

@@ -103,13 +103,14 @@
 
     <!-- 照片池 -->
     <cell
-        cell:className="com.lijun.androidstudy.rajawalidemo.Photograph"
+        cell:className="com.lijun.androidstudy.rajawalidemo.photograph.Photograph"
         cell:packageName="com.lijun.androidstudy"
         cell:icon="@drawable/shape_image_sample"
         cell:name="@string/photograph" />
 
+    <!-- VR场景 -->
     <cell
-        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:className="com.lijun.androidstudy.rajawalidemo.skybox.SkyboxActivity"
         cell:packageName="com.lijun.androidstudy"
         cell:icon="@drawable/drawaspen"
         cell:name="@string/upShadowLockScreen_title" />

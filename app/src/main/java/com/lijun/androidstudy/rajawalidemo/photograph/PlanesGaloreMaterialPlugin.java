@@ -1,4 +1,4 @@
-package com.lijun.androidstudy.rajawalidemo;
+package com.lijun.androidstudy.rajawalidemo.photograph;
 
 import android.opengl.GLES20;
 

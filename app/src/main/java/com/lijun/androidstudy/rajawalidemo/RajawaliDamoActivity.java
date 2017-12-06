@@ -5,16 +5,18 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.lijun.androidstudy.R;
+import com.lijun.androidstudy.rajawalidemo.skybox.SkyboxRenderer;
 
+import org.rajawali3d.renderer.Renderer;
 import org.rajawali3d.view.ISurface;
 
 /**
- * Created by lijun on 17-12-5.
+ * Created by lijun on 17-12-6.
  */
 
-public class Photograph extends AppCompatActivity {
+public class RajawaliDamoActivity extends AppCompatActivity {
 
-    PhotographRenderer mRenderer;
+    Renderer mRenderer;
     protected ISurface mRenderSurface;
 
     @Override
@@ -24,7 +26,7 @@ public class Photograph extends AppCompatActivity {
 
         mRenderSurface = (ISurface) findViewById(R.id.photograph_surface);
 
-        mRenderer = new PhotographRenderer(this);
+        mRenderer = new SkyboxRenderer(this);
         mRenderSurface.setSurfaceRenderer(mRenderer);
     }
 }

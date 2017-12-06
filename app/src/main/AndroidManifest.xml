@@ -243,7 +243,17 @@
 
         <!-- 照片池 -->
         <activity
-            android:name="com.lijun.androidstudy.rajawalidemo.Photograph"
+            android:name="com.lijun.androidstudy.rajawalidemo.photograph.Photograph"
+            android:label="@string/droid_flakes"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <!-- VR场景 -->
+        <activity
+            android:name="com.lijun.androidstudy.rajawalidemo.skybox.SkyboxActivity"
             android:label="@string/droid_flakes"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>

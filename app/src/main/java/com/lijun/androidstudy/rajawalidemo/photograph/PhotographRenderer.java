@@ -1,4 +1,4 @@
-package com.lijun.androidstudy.rajawalidemo;
+package com.lijun.androidstudy.rajawalidemo.photograph;
 
 import android.content.Context;
 import android.view.MotionEvent;
@@ -74,10 +74,10 @@ public class PhotographRenderer extends Renderer {
 
         final SplineTranslateAnimation3D anim = new SplineTranslateAnimation3D(path);
         anim.setDurationMilliseconds(20000);
-        anim.setRepeatMode(Animation.RepeatMode.REVERSE_INFINITE);
+        anim.setRepeatMode(Animation.RepeatMode.REVERSE_INFINITE);//无限重复往返
         anim.setTransformable3D(getCurrentCamera());
         anim.setInterpolator(new AccelerateDecelerateInterpolator());
-        getCurrentScene().registerAnimation(anim);
+        getCurrentScene().registerAnimation(anim);//注册动画监听 Scene render()时更新动画状态 -> applyTransformation
         anim.play();
 
         getCurrentCamera().setLookAt(new Vector3(0, 0, 30));

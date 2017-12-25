@@ -3,6 +3,9 @@
 .idea
 /local.properties
 /build
+jpegImgCompress/build
+rajawali/build
+slidingmenu/build
 /captures
 *.iml
 *.apk

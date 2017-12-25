@@ -1,0 +1,49 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <Button
+        android:id="@+id/choose_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:text="选择图片"/>
+    <Button
+        android:id="@+id/camera_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/choose_image"
+        android:text="拍照"/>
+
+    <Button
+        android:id="@+id/button_switch_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/choose_image"
+        android:text="压缩前"/>
+
+    <Button
+        android:id="@+id/button_switch_target"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/button_switch_source"
+        android:layout_alignTop="@id/button_switch_source"
+        android:text="压缩后"/>
+
+    <TextView
+        android:id="@+id/img_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:paddingStart="20dp"
+        android:layout_toRightOf="@id/camera_image"
+        android:paddingTop="5dp"/>
+
+    <ImageView
+        android:id="@+id/choose_bit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_switch_source"
+        android:contentDescription="@null"/>
+</RelativeLayout>

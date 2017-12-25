@@ -91,4 +91,6 @@
     <string name="photograph">照片池</string>
 
     <string name="skybox">全景照片</string>
+
+    <string name="imgcompress">图片压缩</string>
 </resources>

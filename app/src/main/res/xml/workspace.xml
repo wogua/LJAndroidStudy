@@ -117,10 +117,10 @@
     
     <!-- screen 1 -->
     <cell
-        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
+        cell:className="com.lijun.androidstudy.jpegimgcompressdemo.activity.JpegImgCompressActivity"
         cell:packageName="com.lijun.androidstudy"
-        cell:icon="@drawable/waterfall"
-        cell:name="@string/upShadowLockScreen_title" />
+        cell:icon="@drawable/img_compress"
+        cell:name="@string/imgcompress" />
     <cell
         cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
         cell:packageName="com.lijun.androidstudy"

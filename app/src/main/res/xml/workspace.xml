@@ -121,11 +121,14 @@
         cell:packageName="com.lijun.androidstudy"
         cell:icon="@drawable/img_compress"
         cell:name="@string/imgcompress" />
+
+    <!-- test plugin -->
     <cell
-        cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
-        cell:packageName="com.lijun.androidstudy"
-        cell:icon="@drawable/drawaspen"
-        cell:name="@string/upShadowLockScreen_title" />
+        cell:className="plugin.lijun.com.myplugin.MainActivity"
+        cell:packageName="plugin.lijun.com.myplugin"
+        cell:icon="@drawable/ic_plugin"
+        cell:isPlugin="true"
+        cell:name="@string/plugin_test" />
     <cell
         cell:className="com.lijun.androidstudy.welcomeViewPager.WelcomeActivity"
         cell:packageName="com.lijun.androidstudy"

@@ -1,5 +1,6 @@
 package com.lijun.androidstudy;
 
+import com.didi.virtualapk.PluginManager;
 import com.lijun.androidstudy.util.Utilities;
 
 import android.app.Application;
@@ -17,5 +18,11 @@ public class LJApplication extends Application {
                 .getSystemService(Context.WINDOW_SERVICE);
         Utilities.screenWidth = wm.getDefaultDisplay().getWidth();
         Utilities.screenHeight = wm.getDefaultDisplay().getHeight();
+    }
+
+    @Override
+    protected void attachBaseContext(Context base)  {
+        super.attachBaseContext(base);
+        PluginManager.getInstance(base).init();
     }
 }

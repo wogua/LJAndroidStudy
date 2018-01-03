@@ -23,5 +23,6 @@
         <attr name="packageName" format="string" />
         <attr name="icon" format="reference" />
         <attr name="name" format="reference" />
+        <attr name="isPlugin" format="boolean" />
     </declare-styleable>
 </resources>

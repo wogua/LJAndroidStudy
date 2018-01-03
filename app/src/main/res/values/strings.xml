@@ -93,4 +93,6 @@
     <string name="skybox">全景照片</string>
 
     <string name="imgcompress">图片压缩</string>
+
+    <string name="plugin_test">插件化</string>
 </resources>

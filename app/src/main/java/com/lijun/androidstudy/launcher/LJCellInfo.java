@@ -10,4 +10,5 @@ public class LJCellInfo {
     Bitmap icon;
     String packageName;
     String className;
+    boolean isPlugin;//是否是插件
 }

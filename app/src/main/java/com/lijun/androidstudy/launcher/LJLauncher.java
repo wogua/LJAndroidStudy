@@ -11,6 +11,7 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.lijun.androidstudy.R;
+import com.lijun.androidstudy.plugin.PluginLocalManager;
 import com.lijun.androidstudy.util.PhotoUtils;
 import com.lijun.androidstudy.util.Utilities;
 import com.lijun.viewexplosion.ExplosionField;
@@ -134,8 +135,11 @@ public class LJLauncher extends Activity implements View.OnClickListener {
         // TODO Auto-generated method stub
         if (v instanceof LJCellView) {
             LJCellView cv = (LJCellView) v;
+            LJCellInfo cellInfo = cv.getmCellInfo();
             Log.i(TAG, "onClick v : " + cv.getTitle());
-            if (cv.intent != null) {
+            if(cellInfo.isPlugin){
+                PluginLocalManager.startPluginActivity(this,cv.intent);
+            }else if (cv.intent != null) {
                 startActivitySafety(cv.intent);
             }
         }
@@ -237,6 +241,7 @@ public class LJLauncher extends Activity implements View.OnClickListener {
                 cell.name = a.getString(R.styleable.Cell_name);
                 cell.className = a.getString(R.styleable.Cell_className);
                 cell.packageName = a.getString(R.styleable.Cell_packageName);
+                cell.isPlugin = a.getBoolean(R.styleable.Cell_isPlugin,false);
 //                cell.icon = PhotoUtils.zoom(BitmapFactory.decodeResource(res, a.getResourceId(R.styleable.Cell_icon, 0)), tempW, tempH);
                 cell.icon = PhotoUtils.compositeByBitmap(BitmapFactory.decodeResource(res, a.getResourceId(R.styleable.Cell_icon, 0)),maskBitmap,bgBitmap,zoomTemp,false);
 
@@ -310,8 +315,6 @@ public class LJLauncher extends Activity implements View.OnClickListener {
                 break;
             case LJWorkSpace.SCROLL_STYLE_SPHERE:
                 break;
-
-
             default:
                 break;
         }

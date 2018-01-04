@@ -3,15 +3,23 @@ package com.lijun.androidstudy.launcher;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.TextView;
+
+import com.lijun.androidstudy.util.PhotoUtils;
 
 public class LJCellView extends TextView {
 
     Context mContext;
     LJCellInfo mCellInfo;
     Intent intent = null;
+
+    public Intent getIntent() {
+        return intent;
+    }
 
     public LJCellInfo getmCellInfo() {
         return mCellInfo;
@@ -23,6 +31,15 @@ public class LJCellView extends TextView {
         setText(mCellInfo.name);
         intent = new Intent();
         intent.setComponent(new ComponentName(mCellInfo.packageName, mCellInfo.className));
+    }
+
+    public void setForegroundDrawable(Drawable drawable){
+        if(drawable == null){
+            setCompoundDrawablesWithIntrinsicBounds(null, new FastBitmapDrawable(mCellInfo.icon), null, null);
+        }else {
+            Bitmap compressBitmap = PhotoUtils.mergeLoadingBitmap(mCellInfo.icon);
+            setCompoundDrawablesWithIntrinsicBounds(null, new FastBitmapDrawable(compressBitmap), null, null);
+        }
     }
 
     public LJCellView(Context context, AttributeSet attrs, int defStyle) {

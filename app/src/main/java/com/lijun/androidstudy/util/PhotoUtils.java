@@ -2,11 +2,14 @@ package com.lijun.androidstudy.util;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
@@ -16,6 +19,18 @@ import android.util.Log;
  */
 
 public class PhotoUtils {
+
+    public static Drawable zoomDrawable(Drawable drawable, int w, int h) {
+        int width = drawable.getIntrinsicWidth();
+        int height = drawable.getIntrinsicHeight();
+        Bitmap oldbmp = drawable2bitmap(drawable); // drawable 转换成 bitmap
+        Matrix matrix = new Matrix();   // 创建操作图片用的 Matrix 对象
+        float scaleWidth = ((float) w / width);   // 计算缩放比例
+        float scaleHeight = ((float) h / height);
+        matrix.postScale(scaleWidth, scaleHeight);         // 设置缩放比例
+        Bitmap newbmp = Bitmap.createBitmap(oldbmp, 0, 0, width, height, matrix, true);       // 建立新的 bitmap ，其内容是对原 bitmap 的缩放后的图
+        return new BitmapDrawable(newbmp);       // 把 bitmap 转换成 drawable 并返回
+    }
 
     public static Bitmap zoom(Bitmap bmpBg, float scale) {
         if (bmpBg == null) return null;
@@ -59,7 +74,7 @@ public class PhotoUtils {
         return bg;
     }
 
-    public static Bitmap compositeByBitmap(Bitmap srcBmp,Bitmap maskBmp,Bitmap bgBmp,Bitmap zmBmp,boolean isWidget) {
+    public static Bitmap compositeByBitmap(Bitmap srcBmp, Bitmap maskBmp, Bitmap bgBmp, Bitmap zmBmp, boolean isWidget) {
         if (bgBmp == null || maskBmp == null || zmBmp == null) return srcBmp;
         Paint paint = new Paint();
         if (!zmBmp.isMutable()) {
@@ -129,5 +144,35 @@ public class PhotoUtils {
         canvas3.setBitmap(null);
         Log.i("xxxx", "bgBmp = " + bgBmp.getHeight() + " , " + bgBmp.getWidth());
         return bgBmp;
+    }
+
+    /**
+     * 图标添加Loading...水印
+     *
+     * @return
+     */
+    public static Bitmap mergeLoadingBitmap(Bitmap backBitmap) {
+        if (backBitmap == null || backBitmap.isRecycled()) {
+            return null;
+        }
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setFilterBitmap(true);
+
+        Bitmap bitmap = backBitmap.copy(Bitmap.Config.ARGB_8888, true);
+        Canvas canvas = new Canvas(bitmap);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+
+        paint.setColor(Color.parseColor("#aaff0000"));
+        canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), paint);
+        paint.setXfermode(null);
+        paint.reset();
+        paint.setColor(Color.parseColor("#ffffffff"));
+        paint.setTextSize(30);
+        Typeface font = Typeface.create(Typeface.DEFAULT_BOLD, Typeface.BOLD_ITALIC);
+        paint.setTypeface(font);
+        canvas.drawText("Loading...", 13, 90, paint);
+        canvas.setBitmap(null);
+        return bitmap;
     }
 }

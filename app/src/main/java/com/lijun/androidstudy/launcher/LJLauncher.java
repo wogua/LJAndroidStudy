@@ -105,6 +105,7 @@ public class LJLauncher extends Activity implements View.OnClickListener {
     };
 
     private void onExpolosionChanged(boolean isOpened) {
+        Log.d("PluginLocalManager","currentThread 3 : " + Thread.currentThread());
         if (isOpened) {
             Toast.makeText(getApplicationContext(), "Explosion Mode Opened",
                     Toast.LENGTH_LONG).show();
@@ -138,7 +139,7 @@ public class LJLauncher extends Activity implements View.OnClickListener {
             LJCellInfo cellInfo = cv.getmCellInfo();
             Log.i(TAG, "onClick v : " + cv.getTitle());
             if(cellInfo.isPlugin){
-                PluginLocalManager.startPluginActivity(this,cv.intent);
+                PluginLocalManager.startPluginActivity(this,cv);
             }else if (cv.intent != null) {
                 startActivitySafety(cv.intent);
             }

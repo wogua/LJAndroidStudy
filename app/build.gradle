@@ -3,19 +3,20 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.didi.virtualapk.host'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
-    defaultConfig {
-        applicationId "com.lijun.androidstudy"
-        minSdkVersion 21
-        targetSdkVersion 25
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
-        versionCode 1
-        versionName "1.0"
+    defaultConfig {
+        applicationId rootProject.ext.android.applicationId
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         useLibrary 'org.apache.http.legacy'
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -32,6 +33,14 @@ android {
             java.srcDirs = ['src/main/java','../shapeimage/src','../ljprogressbar/src','../viewexplosion/src']
         }
     }
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'x86', 'armeabi-v7a','x86_64'
+            universalApk true
+        }
+    }
 }
 
 dependencies {
@@ -39,10 +48,11 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.1.1'
+    compile rootProject.ext.dependencies['appcompat-v7']
     testCompile 'junit:junit:4.12'
+    compile rootProject.ext.dependencies['recyclerview-v7']
+
     compile project(':loadingindicator')
-    compile 'com.android.support:recyclerview-v7:23.1.1'
     compile project(':slidingmenu')
     //dym button
     compile 'com.github.dmytrodanylyk.circular-progress-button:library:1.1.3'

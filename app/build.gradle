@@ -51,7 +51,6 @@ dependencies {
     compile rootProject.ext.dependencies['appcompat-v7']
     testCompile 'junit:junit:4.12'
     compile rootProject.ext.dependencies['recyclerview-v7']
-
     compile project(':loadingindicator')
     compile project(':slidingmenu')
     //dym button
@@ -60,5 +59,6 @@ dependencies {
     compile project(':rajawali')
     compile project(':jpegImgCompress')
     compile 'com.didi.virtualapk:core:0.9.0'
+    compile 'com.github.open-android:pinyin4j:2.5.0'
 }
 
